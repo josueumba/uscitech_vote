@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.d-flex {
+    display: flex;
+}
+
+/* HEADER */
+header {
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-image: linear-gradient(to left, rgb(3, 124, 236), rgb(0, 20, 202));
+    color: white;
+}
+
+header nav {
+    display: flex;
+    gap: 25px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+header a {
+    text-decoration: none;
+    color: white;
+}
+
+.etudiant {
+    font-weight: 600;
+    color: red;
+}
+
+/* FOOTER */
+footer {
+    justify-content: space-between;
+    align-items: center;
+    color: rgb(3, 124, 236);
+    padding: 20px;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.nav-foot {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-foot a {
+    text-decoration: none;
+    color: rgb(3, 124, 236);
+}
+
+/* MAIN INDEX */
+main {
+    align-items: center;
+    text-align: center;
+    padding: 70px 0;
+    background-image: linear-gradient(to left, rgb(3, 124, 236), rgb(0, 20, 202));
+    color: white;
+}
+
+.main-div1 {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+main a {
+    margin-top: 10px;
+    text-decoration: none;
+    padding: 15px;
+    width: 150px;
+    border: 2px solid white;
+    border-radius: 5px;
+    color: white;
+    background-image: linear-gradient(to left, rgb(3, 124, 236), rgb(0, 20, 202));
+}
+
+/* MAIN LOGIN */
+.main-login {
+    display: flex;
+    align-items: center;
+    margin: 35px 0;
+}
+
+.main-login form {
+    margin-left: 30px;
+}
+
+.main-login h1 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 30px;
+}
+
+.main-login #alert-error {
+    background: red;
+    color: white;
+    font-weight: 600;
+    padding: 5px;
+    width: 300px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.img-login {
+    width: 50%;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.login-form div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.login-form input {
+    width: 300px;
+    height: 35px;
+}
+
+.login-form button {
+    border: none;
+    padding: 10px 0;
+    width: 150px;
+    color: white;
+    background-image: linear-gradient(to right, rgb(3, 124, 236), rgb(0, 20, 202));
+}
+
+.login-form button:hover {
+    cursor: pointer;
+}
