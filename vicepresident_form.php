@@ -1,29 +1,21 @@
 <div class="flex-container">
     <div class="flex-item">
-        <label for="choix_vicepresident1">
+        <label for="KIANGEBENI_JORDAN">
                 <img src="images/e1.jpg" alt="photo candidat président">
-                UNKNOWN
+                KIANGEBENI JORDAN
         </label>
 
-        <input type="radio" name="choix_vicepresident" id="choix_vicepresident1" value="1">
+        <input type="radio" name="choix_vicepresident" id="KIANGEBENI_JORDAN" value="KIANGEBENI JORDAN" required>
     </div>
 
     <div class="flex-item">
-        <label for="choix_vicepresident2">
-                <img src="images/e1.jpg" alt="photo candidat président">
-                UNKNOWN
+        <label for="BLANC_VOTE_VP">
+                <img src="images/faux.png" alt="photo candidat président">
+                VOTE BLANC
         </label>
 
-        <input type="radio" name="choix_vicepresident" id="choix_vicepresident2" value="2">
+        <input type="radio" name="choix_vicepresident" id="BLANC_VOTE_VP" value="BLANC VOTE">
     </div>
-
-    <div class="flex-item">
-        <label for="choix_vicepresident3">
-                <img src="images/e1.jpg" alt="photo candidat président">
-                UNKNOWN
-        </label>
-
-        <input type="radio" name="choix_vicepresident" id="choix_vicepresident3" value="3">
-    </div>
+    
         
 </div>

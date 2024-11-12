@@ -16,18 +16,21 @@ session_start();
     <?php require_once(__DIR__ . "/header.php") ?>
     
     <section class="section-voted">
-        <div>
+        <div class="section-voted1">
             <?php if(isset($_SESSION["voted_error_message"])): ?>
                 <p><?php echo $_SESSION["voted_error_message"]; ?></p>
                 <img src="images/faux.png" alt="" height="50px" width="50px">
             <?php else : ?>
                 <p><?php echo $_SESSION["vote_succes"]; ?></p>
-                <img src="images/ok.png" alt="">
+                <img src="images/ok.png" alt="" height="50px" width="50px">
             <?php endif; ?>
+            <a href="home.php">OK</a>
         </div>
 
-        <div><img src="images/10.svg" alt="" height="90%" width="90%"></div>
+        <div><img src="images/10.svg" alt="" height="400em" width="90%"></div>
     </section>
+
+    <?php require_once(__DIR__ . "/footer.php") ?>
 
 
 </body>

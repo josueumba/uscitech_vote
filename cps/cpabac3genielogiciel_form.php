@@ -1,20 +1,20 @@
 <div class="flex-container">
     <div class="flex-item">
-        <label for="choix_cpa1">
+        <label for="UMBA_JOSUE">
                 <img src="images/e1.jpg" alt="photo candidat cpa">
-                UNKNOWN
+                UMBA JOSUE
         </label>
 
-        <input type="radio" name="choix_cpa" id="choix_cpa1" value="1" required>
+        <input type="radio" name="choix_cpa" id="UMBA_JOSUE" value="UMBA JOSUE" required>
     </div>
 
     <div class="flex-item">
-        <label for="choix_cpa2">
-                <img src="images/e1.jpg" alt="photo candidat cpa">
-                UNKNOWN
+        <label for="BLANC_VOTE_CPA">
+                <img src="images/faux.png" alt="photo candidat cpa">
+                VOTE BLANC
         </label>
 
-        <input type="radio" name="choix_cpa" id="choix_cpa2" value="2">
+        <input type="radio" name="choix_cpa" id="BLANC_VOTE_CPA" value="BLANC VOTE">
     </div>
         
 </div>

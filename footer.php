@@ -1,7 +1,11 @@
 <footer class="d-flex">
     <nav class="nav-foot">
-        <a href="">Home</a>
-        <a href="">About</a>
+        <?php if(isset($_SESSION['logged_student'])): ?>
+            <a href="home.php">Home</a>
+        <?php else :?>
+            <a href="index.php">Home</a>
+        <?php endif; ?>
+        <a href="about.php">About</a>
 
     </nav>
     <i>Copyright@2024</i>

@@ -16,5 +16,14 @@
 
         <input type="radio" name="choix_cpa" id="choix_cpa2" value="2">
     </div>
+
+    <div class="flex-item">
+        <label for="choix_cpa3">
+                <img src="images/faux.png" alt="photo candidat cpa">
+                VOTE BLANC
+        </label>
+
+        <input type="radio" name="choix_cpa" id="choix_cpa3" value="BLANC VOTE">
+    </div>
         
 </div>

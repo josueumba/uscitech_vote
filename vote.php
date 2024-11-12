@@ -1,9 +1,12 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 $promotion= $_SESSION["logged_student"]["promotion"];
 $options= $_SESSION["logged_student"]["options"];
-$path= strtolower($promotion . $options);
+$path= strtolower($promotion.$options);
+$path= str_replace(' ', '', $path);
 ?>
 
 <!DOCTYPE html>

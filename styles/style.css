@@ -11,6 +11,7 @@
 
 /* HEADER */
 header {
+    height: 10vh;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
@@ -37,6 +38,7 @@ header a {
 
 /* FOOTER */
 footer {
+    height: 10vh;
     justify-content: space-between;
     align-items: center;
     color: rgb(3, 124, 236);
@@ -55,8 +57,9 @@ footer {
     color: rgb(3, 124, 236);
 }
 
-/* MAIN INDEX */
-main {
+/* MAIN INDEX HOME */
+.main-index-home {
+    height: 80vh;
     align-items: center;
     text-align: center;
     padding: 70px 0;
@@ -73,7 +76,7 @@ main {
     gap: 20px;
 }
 
-main a {
+.main-index-home a {
     margin-top: 10px;
     text-decoration: none;
     padding: 15px;
@@ -81,14 +84,17 @@ main a {
     border: 2px solid white;
     border-radius: 5px;
     color: white;
+    background-image: linear-gradient(to right, rgb(3, 124, 236), rgb(0, 20, 202));
+}
+.main-index-home a:hover {
     background-image: linear-gradient(to left, rgb(3, 124, 236), rgb(0, 20, 202));
 }
 
 /* MAIN LOGIN */
 .main-login {
+    height: 80vh;
     display: flex;
     align-items: center;
-    margin: 35px 0;
 }
 
 .main-login form {
@@ -102,8 +108,9 @@ main a {
 }
 
 .main-login #alert-error {
-    background: red;
-    color: white;
+    color: red;
+    background-color: #ffe6e6;
+    border: 1px solid red;
     font-weight: 600;
     padding: 5px;
     width: 300px;
@@ -144,4 +151,5 @@ main a {
 
 .login-form button:hover {
     cursor: pointer;
+    background-image: linear-gradient(to left, rgb(3, 124, 236), rgb(0, 20, 202));
 }

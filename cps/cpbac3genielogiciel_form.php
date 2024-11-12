@@ -1,20 +1,20 @@
 <div class="flex-container">
     <div class="flex-item">
-        <label for="choix_cp1">
+        <label for="MBEMBE_EGIDE">
                 <img src="images/e1.jpg" alt="photo candidat cp">
-                UNKNOWN
+                MBEMBE EGIDE
         </label>
 
-        <input type="radio" name="choix_cp" id="choix_cp1" value="1" required>
+        <input type="radio" name="choix_cp" id="MBEMBE_EGIDE" value="MBEMBE EGIDE" required>
     </div>
 
     <div class="flex-item">
-        <label for="choix_cp2">
-                <img src="images/e1.jpg" alt="photo candidat cp">
-                UNKNOWN
+        <label for="BLANC_VOTE_CP">
+                <img src="images/faux.png" alt="photo candidat cp">
+                VOTE BLANC
         </label>
 
-        <input type="radio" name="choix_cp" id="choix_cp2" value="2">
+        <input type="radio" name="choix_cp" id="BLANC_VOTE_CP" value="BLANC VOTE">
     </div>
         
 </div>
