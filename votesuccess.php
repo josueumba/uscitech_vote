@@ -27,7 +27,7 @@ session_start();
             <a href="home.php">OK</a>
         </div>
 
-        <div><img src="images/10.svg" alt="" height="400em" width="90%"></div>
+        <div class="section-voted2"><img src="images/10.svg" alt=""></div>
     </section>
 
     <?php require_once(__DIR__ . "/footer.php") ?>

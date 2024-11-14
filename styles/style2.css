@@ -63,6 +63,7 @@
     color: white;
     background-image: linear-gradient(to right, rgb(3, 124, 236), rgb(0, 20, 202));
 }
+
 .form-vote button:hover {
     cursor: pointer;
     background-image: linear-gradient(to left, rgb(3, 124, 236), rgb(0, 20, 202));
@@ -74,20 +75,31 @@
     justify-content: center;
     align-items: center;
     height: 80vh;
+    padding: 10px;
 }
+
 .section-voted div {
     display: flex;
     text-transform: uppercase;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    padding: 30px;
     width: 50vw;
-    margin: 30px auto;
 }
+
 .section-voted1 {
-background: rgba(231, 231, 231, 0.903);
+    background: rgba(231, 231, 231, 0.903);
+    padding: 30px;
+    gap: 20px;
+}
+
+.section-voted2 {
+    height: 50vh;
+}
+
+.section-voted2 img {
+    width: 100vw;
+    height: 250px;
 }
 
 .section-voted a {
@@ -102,5 +114,42 @@ background: rgba(231, 231, 231, 0.903);
 }
 
 .section-voted a:hover {
-    background-image: linear-gradient(to left, rgb(3, 124, 236), rgb(0, 20, 202));   
+    background-image: linear-gradient(to left, rgb(3, 124, 236), rgb(0, 20, 202));
+}
+
+.section-results {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    width: 50vw;
+    margin: 30px auto;
+    padding: 30px;
+    background-image: linear-gradient(to right, rgb(3, 124, 236), rgb(0, 20, 202));
+    color: white;
+    border-radius: 10px;
+    gap: 50px;
+}
+
+.section-results h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+.section-results div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.section-results h2 {
+    font-size: 1.6em;
+    margin-bottom: 10px;
+}
+
+.section-results p {
+    font-weight: 600;
 }
