@@ -19,7 +19,10 @@ SET time_zone = "+00:00";
 
 --
 -- Base de données : `uscitech_vote`
---
+CREATE DATABASE uscitech_vote;
+
+-- Utiliser la base de données créée
+USE uscitech_vote;
 
 -- --------------------------------------------------------
 
