@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 15 nov. 2024 à 19:25
+-- Généré le : ven. 15 nov. 2024 à 20:12
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -19,10 +19,9 @@ SET time_zone = "+00:00";
 
 --
 -- Base de données : `uscitech_vote`
-CREATE DATABASE uscitech_vote;
-
--- Utiliser la base de données créée
-USE uscitech_vote;
+--
+CREATE DATABASE IF NOT EXISTS `uscitech_vote` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `uscitech_vote`;
 
 -- --------------------------------------------------------
 
@@ -30,6 +29,7 @@ USE uscitech_vote;
 -- Structure de la table `candidat`
 --
 
+DROP TABLE IF EXISTS `candidat`;
 CREATE TABLE `candidat` (
   `id` int(11) NOT NULL,
   `etudiant` int(11) NOT NULL,
@@ -75,6 +75,7 @@ INSERT INTO `candidat` (`id`, `etudiant`, `poste`) VALUES
 -- Structure de la table `etudiant`
 --
 
+DROP TABLE IF EXISTS `etudiant`;
 CREATE TABLE `etudiant` (
   `id` int(11) NOT NULL,
   `nom` varchar(100) NOT NULL,
@@ -122,6 +123,7 @@ INSERT INTO `etudiant` (`id`, `nom`, `prenom`, `sexe`, `email`, `promotion`, `op
 -- Structure de la table `poste`
 --
 
+DROP TABLE IF EXISTS `poste`;
 CREATE TABLE `poste` (
   `id` int(11) NOT NULL,
   `titre` varchar(100) NOT NULL
@@ -143,6 +145,7 @@ INSERT INTO `poste` (`id`, `titre`) VALUES
 -- Structure de la table `vote`
 --
 
+DROP TABLE IF EXISTS `vote`;
 CREATE TABLE `vote` (
   `id` int(11) NOT NULL,
   `etudiant` int(11) NOT NULL,
@@ -201,6 +204,7 @@ INSERT INTO `vote` (`id`, `etudiant`, `candidat`) VALUES
 -- Structure de la table `vote_2`
 --
 
+DROP TABLE IF EXISTS `vote_2`;
 CREATE TABLE `vote_2` (
   `id` int(11) NOT NULL,
   `nom` varchar(256) NOT NULL,
