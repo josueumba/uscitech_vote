@@ -26,7 +26,7 @@ require_once(__DIR__ ."/treat_candidat.php");
 
         <div>
             <h2>président</h2>
-            <?php foreach($resultats as $president): ?>
+            <?php foreach($presidences as $president): ?>
                 <p><?php echo $president["nom"]; ?> : <?php echo $president["voix"]; ?></p>
             <?php endforeach; ?>
         </div>

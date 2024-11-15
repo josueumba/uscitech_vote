@@ -1,3 +1,4 @@
+<hr>
 <footer class="d-flex">
     <nav class="nav-foot">
         <?php if(isset($_SESSION['logged_student'])): ?>

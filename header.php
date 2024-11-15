@@ -21,7 +21,11 @@ if (session_status() == PHP_SESSION_NONE) {
     <nav>
         <?php if(isset($_SESSION['logged_student'])): ?>
             <a href="home.php">Home</a>
-            <a href="vote.php">Vote</a>
+            <?php if($_SESSION['logged_student']['promotion'] == "GOLD") : ?>
+                <a href="results_form.php">Results</a>
+            <?php else : ?>
+                <a href="vote.php">Vote</a>
+            <?php endif; ?>
             <a href="about.php">About</a>
             <a href="logout.php">LogOut</a>
         <?php else :?>
