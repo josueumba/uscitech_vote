@@ -19,10 +19,10 @@ session_start();
         <div class="section-voted1">
             <?php if(isset($_SESSION["voted_error_message"])): ?>
                 <p><?php echo $_SESSION["voted_error_message"]; ?></p>
-                <img src="images/faux.png" alt="" height="50px" width="50px">
+                <img src="images/faux.png" alt="">
             <?php else : ?>
                 <p><?php echo $_SESSION["vote_succes"]; ?></p>
-                <img src="images/ok.png" alt="" height="50px" width="50px">
+                <img src="images/ok.png" alt="">
             <?php endif; ?>
             <a href="home.php">OK</a>
         </div>

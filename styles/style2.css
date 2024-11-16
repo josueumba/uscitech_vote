@@ -69,6 +69,36 @@
     background-image: linear-gradient(to left, rgb(3, 124, 236), rgb(0, 20, 202));
 }
 
+/* RESPONSIVE  FORM VOTE */
+@media (max-width: 576px),
+(max-height: 400px) {
+    .form-vote {
+        margin: 50px 10px;
+    }
+
+    .form-vote button {
+        font-size: 1em;
+    }
+
+    .flex-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .flex-item {
+        padding: 0;
+        gap: 10px;
+        margin-bottom: 40px;
+    }
+
+    .flex-item img {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+
+
 .section-voted {
     display: flex;
     flex-direction: column;
@@ -81,6 +111,7 @@
 .section-voted div {
     display: flex;
     text-transform: uppercase;
+    font-weight: 600;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -91,6 +122,11 @@
     background: rgba(231, 231, 231, 0.903);
     padding: 30px;
     gap: 20px;
+}
+
+.section-voted1 img {
+    height: 50px;
+    width: 50px;
 }
 
 .section-voted2 {
@@ -117,6 +153,36 @@
     background-image: linear-gradient(to left, rgb(3, 124, 236), rgb(0, 20, 202));
 }
 
+/* RESPONSIVE  FORM VOTE SUCCESS */
+@media (max-width: 576px),
+(max-height: 400px) {
+    .section-voted {
+        height: auto;
+        gap: 30px;
+    }
+
+    .section-voted div {
+        width: 70vw;
+    }
+
+    .section-voted1 img {
+        height: 30px;
+        width: 30px;
+    }
+
+    .section-voted2 {
+        height: auto;
+    }
+
+    .section-voted a {
+        font-size: 1em;
+        padding: 10px 0;
+        width: 120px;
+    }
+}
+
+
+
 .section-results {
     display: flex;
     flex-direction: column;
@@ -129,12 +195,12 @@
     background-image: linear-gradient(to right, rgb(3, 124, 236), rgb(0, 20, 202));
     color: white;
     border-radius: 10px;
-    gap: 50px;
+    gap: 100px;
 }
 
 .section-results h1 {
     font-size: 2.5em;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .section-results div {
@@ -153,6 +219,28 @@
 .section-results p {
     font-weight: 600;
 }
+
+/* RESPONSIVE  RESULTATS */
+@media (max-width: 576px),
+(max-height: 400px) {
+    .section-results {
+        width: 80vw;
+    }
+
+    .section-results h1 {
+        font-size: 2em;
+    }
+
+    .section-results h2 {
+        font-size: 1.2em;
+    }
+
+    .section-results p {
+        font-size: 1em;
+    }
+}
+
+
 
 .section-about {
     width: 80vw;
@@ -176,4 +264,17 @@
     text-align: center;
     margin-bottom: 10px;
     font-size: 40px;
+}
+
+/* RESPONSIVE  ABOUT */
+@media (max-width: 576px),
+(max-height: 400px) {
+    .section-about h1 {
+        font-size: 30px;
+    }
+
+    .section-about p,
+    .section-about li {
+        font-size: 18px;
+    }
 }

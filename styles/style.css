@@ -1,7 +1,6 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -14,7 +13,7 @@ header {
     height: 10vh;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     background-image: linear-gradient(to left, rgb(3, 124, 236), rgb(0, 20, 202));
     color: white;
 }
@@ -31,18 +30,13 @@ header a {
     color: white;
 }
 
-.etudiant {
-    font-weight: 600;
-    color: red;
-}
-
 /* FOOTER */
-footer {
+#footer {
     height: 10vh;
     justify-content: space-between;
     align-items: center;
     color: rgb(3, 124, 236);
-    padding: 20px;
+    padding: 10px;
     font-weight: 500;
     font-size: 20px;
 }
@@ -57,23 +51,40 @@ footer {
     color: rgb(3, 124, 236);
 }
 
+/* RESPONSIVE  FOOTER */
+@media (max-width: 576px),
+(max-height: 400px) {
+    #footer {
+        display: none;
+    }
+}
+
+
+
 /* MAIN INDEX HOME */
 .main-index-home {
-    height: 80vh;
+    height: 70vh;
     align-items: center;
     text-align: center;
-    padding: 70px 0;
+    padding: 50px 0;
     background-image: linear-gradient(to left, rgb(3, 124, 236), rgb(0, 20, 202));
     color: white;
 }
 
-.main-div1 {
+.main-index-home div {
     width: 50%;
+}
+
+.main-div1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
+}
+
+.main-div1 h1 {
+    font-size: 35px;
 }
 
 .main-index-home a {
@@ -86,8 +97,42 @@ footer {
     color: white;
     background-image: linear-gradient(to right, rgb(3, 124, 236), rgb(0, 20, 202));
 }
+
+.main-index-home img {
+    height: 50%;
+    width: 70%;
+}
+
 .main-index-home a:hover {
     background-image: linear-gradient(to left, rgb(3, 124, 236), rgb(0, 20, 202));
+}
+
+/* RESPONSIVE  MAIN INDEX HOME */
+@media (max-width: 576px),
+(max-height: 400px) {
+    .main-index-home {
+        height: auto;
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 30px;
+    }
+
+    .main-index-home div {
+        width: 60%;
+    }
+
+    .main-div1 h1 {
+        font-size: 25px;
+    }
+
+    .main-index-home img {
+        height: 50%;
+        width: 80%;
+    }
+
+    .main-index-home a {
+        width: 100px;
+    }
 }
 
 /* MAIN LOGIN */
@@ -152,4 +197,30 @@ footer {
 .login-form button:hover {
     cursor: pointer;
     background-image: linear-gradient(to left, rgb(3, 124, 236), rgb(0, 20, 202));
+}
+
+/* RESPONSIVE  MAIN LOGIN */
+@media (max-width: 576px),
+(max-height: 400px) {
+    .main-login {
+        height: auto;
+        flex-direction: column;
+    }
+
+    .img-login {
+        display: none;
+    }
+
+    .main-login form {
+        margin: 50px 0;
+    }
+
+    .login-form input {
+        width: 250px;
+        height: 25px;
+    }
+
+    .main-login #alert-error {
+        width: 250px;
+    }
 }

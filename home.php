@@ -11,13 +11,13 @@
 
     <main class="d-flex main-index-home">
         <div class="main-div1">
-            <h1 style="font-size: 35px;">ONLINE VOTING SYSTEM</h1>
+            <h1>ONLINE VOTING SYSTEM</h1>
             <P style="padding:0 30px; font-size:1.2em">Online voting systems are software platforms used to securely conduct votes and elections. As a digital platform, they eliminate the need to cast your votes using paper or having to gather in person</P>
             <a href="vote.php">VOTE NOW</a>
         </div>
         
-        <div style="width: 50%;">
-            <img src="images/11.svg" alt="" height="385vh" width="100%">
+        <div>
+            <img src="images/11.svg" alt="">
         </div>
     </main>
 
