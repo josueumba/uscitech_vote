@@ -38,6 +38,3 @@ $cp_bac3_genieelectrique= getCpsVote($mysqlClient, 'cp', 'bac3', 'genie electriq
 $cpa_bac3_genielogiciel= getCpsVote($mysqlClient, 'cpa', 'bac3', 'genie logiciel');
 $cpa_bac3_reseau= getCpsVote($mysqlClient, 'cpa', 'bac3', 'reseau telecommunication');
 $cpa_bac3_genieelectrique= getCpsVote($mysqlClient, 'cpa', 'bac3', 'genie electrique');
-
-?>
-
