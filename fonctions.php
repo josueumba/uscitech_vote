@@ -12,6 +12,34 @@ function redirectToUrl(string $url): never {
 }
 
 
+//Retrieve the president's candidates
+function getCandidates($mysqlClient, $titre) {
+    $query= "SELECT c.id, e.nom, e.prenom, p.titre as poste 
+            FROM candidat c JOIN poste p ON p.id= c.poste 
+            JOIN etudiant e ON e.id= c.etudiant WHERE p.titre= :titre AND CONCAT(e.nom,' ',e.prenom)!='BLANC VOTE'";
+    $stmt= $mysqlClient->prepare($query);
+    $stmt->execute(['titre' => $titre]);
+    $results= $stmt->fetchAll();
+    return $results;
+}
+
+//Retrieve the cp's candidates
+function getCandidatesCps($mysqlClient, $titre, $promotion, $options) {
+    $query= "SELECT c.id, e.nom, e.prenom, p.titre as poste 
+            FROM candidat c JOIN poste p ON p.id= c.poste 
+            JOIN etudiant e ON e.id= c.etudiant WHERE p.titre= :titre 
+            AND e.promotion= :promotion AND e.options= :options 
+            AND CONCAT(e.nom,' ',e.prenom)!='BLANC VOTE'";
+    $stmt= $mysqlClient->prepare($query);
+    $stmt->execute([
+        'titre' => $titre,
+        'promotion' => $promotion,
+        'options' => $options
+    ]);
+    $results= $stmt->fetchAll();
+    return $results;
+}
+
 //fonction pour récupérer les voix des candidats président et vice président
 function getPresidenceVote($mysqlClient, $titre) {
     $query= "SELECT c.id AS id, CONCAT(e.nom, ' ', e.prenom) AS nom, COUNT(v.candidat) AS voix

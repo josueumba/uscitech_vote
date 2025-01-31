@@ -1,21 +1,24 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+require_once(__DIR__ ."/fonctions.php");
+
+$presidents= getCandidates($mysqlClient, 'PRESIDENT');
+?>
+
 <div class="flex-container">
-    <div class="flex-item">
-        <label for="KILIMA_SALEM">
-                <img src="images/e1.jpg" alt="photo candidat président">
-                KILIMA SALEM
-        </label>
+    <?php foreach($presidents as $candidate) : ?>
+        <div class="flex-item">
+            <label for="<?= $candidate["nom"] . "_" . $candidate["prenom"] . "_P"; ?>">
+                    <img src="images/<?= $candidate["nom"] . "_" . $candidate["prenom"] . ".jpg"; ?>" alt="photo candidat président">
+                    <?= $candidate["nom"] . " " . $candidate["prenom"]; ?>
+            </label>
 
-        <input type="radio" name="choix_president" id="KILIMA_SALEM" value="KILIMA SALEM" required>
-    </div>
-
-    <div class="flex-item">
-        <label for="JEHOVAH_TEMOIN">
-                <img src="images/e1.jpg" alt="photo candidat président">
-                JEHOVAH TEMOIN
-        </label>
-
-        <input type="radio" name="choix_president" id="JEHOVAH_TEMOIN" value="JEHOVAH TEMOIN">
-    </div>
+            <input type="radio" name="choix_president" id="<?= $candidate["nom"] . "_" . $candidate["prenom"] . "_P"; ?>" value="<?= $candidate["nom"] . " " . $candidate["prenom"]; ?>" required>
+        </div>
+    <?php endforeach; ?>
 
     <div class="flex-item">
         <label for="BLANC_VOTE_P">

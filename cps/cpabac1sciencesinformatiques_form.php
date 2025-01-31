@@ -1,4 +1,25 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+require_once(__DIR__ ."/../fonctions.php");
+
+$cpas= getCandidatesCps($mysqlClient, 'CPA', 'BAC1', 'SCIENCES INFORMATIQUES');
+?>
+
 <div class="flex-container">
+    <?php foreach($cpas as $candidate) : ?>
+        <div class="flex-item">
+            <label for="<?= $candidate["nom"] . "_" . $candidate["prenom"] . "_CPA"; ?>">
+                    <img src="images/<?= $candidate["nom"] . "_" . $candidate["prenom"]; ?>" alt="photo candidat cpa">
+                    <?= $candidate["nom"] . " " . $candidate["prenom"]; ?>
+            </label>
+
+            <input type="radio" name="choix_cpa" id="<?= $candidate["nom"] . "_" . $candidate["prenom"] . "_CPA"; ?>" value="<?= $candidate["nom"] . " " . $candidate["prenom"]; ?>" required>
+        </div>
+    <?php endforeach; ?>
+
     <div class="flex-item">
         <label for="blanc_vote_cpa">
                 <img src="images/faux.png" alt="photo candidat cpa">

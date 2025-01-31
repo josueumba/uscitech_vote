@@ -173,13 +173,21 @@ header a {
     align-items: center;
 }
 
-.main-login form {
+.main-login-c {
+    display: flex;
+    align-items: center;
+}
+
+.main-login form,
+.main-login-c form {
     margin-left: 30px;
 }
 
-.main-login h1 {
+.main-login h1,
+.main-login-c h1 {
     text-align: center;
     margin-bottom: 50px;
+    margin-top: 20px;
     font-size: 30px;
 }
 
@@ -194,8 +202,36 @@ header a {
     margin-bottom: 10px;
 }
 
+.main-login-c #alert-error {
+    color: red;
+    background-color: #ffe6e6;
+    border: 1px solid red;
+    font-weight: 600;
+    padding: 5px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
 .img-login {
     width: 50%;
+}
+
+.main-login-c label {
+    font-size: 0.9em;
+}
+
+.main-login-c .login-form input,
+.main-login-c .login-form select {
+    width: 300px;
+    height: 25px;
+}
+
+.main-login-c .login-form div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
 }
 
 .login-form {
@@ -212,7 +248,8 @@ header a {
     gap: 5px;
 }
 
-.login-form input {
+.login-form input,
+.login-form select {
     width: 300px;
     height: 35px;
 }
@@ -220,6 +257,7 @@ header a {
 .login-form button {
     border: none;
     padding: 10px 0;
+    margin-bottom: 20px;
     width: 150px;
     color: white;
     background-image: linear-gradient(to right, rgb(3, 124, 236), rgb(0, 20, 202));

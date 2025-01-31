@@ -1,3 +1,10 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +20,12 @@
         <div class="main-div1">
             <h1>ONLINE VOTING SYSTEM</h1>
             <P style="padding:0 30px; font-size:1.2em">Online voting systems are software platforms used to securely conduct votes and elections. As a digital platform, they eliminate the need to cast your votes using paper or having to gather in person</P>
-            <a href="vote.php">VOTE NOW</a>
+
+            <?php if($_SESSION['logged_student']['promotion'] == "GOLD") : ?>
+                <a href="candidate.php">CANDIDATE</a>
+            <?php else : ?>
+                <a href="vote.php">VOTE NOW</a>
+            <?php endif; ?>
         </div>
         
         <div>

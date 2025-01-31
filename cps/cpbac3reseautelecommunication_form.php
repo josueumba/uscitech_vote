@@ -1,13 +1,25 @@
-<div class="flex-container">
-    <div class="flex-item">
-        <label for="kilima_salem">
-                <img src="images/e1.jpg" alt="photo candidat cp">
-                KILIMA SALEM
-        </label>
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
-        <input type="radio" name="choix_cp" id="kilima_salem" value="KILIMA SALEM" required>
-    </div>
-    
+require_once(__DIR__ ."/../fonctions.php");
+
+$cps= getCandidatesCps($mysqlClient, 'CP', 'BAC3', 'RESEAU TELECOMMUNICATION');
+?>
+
+<div class="flex-container">
+    <?php foreach($cps as $candidate) : ?>
+        <div class="flex-item">
+            <label for="<?= $candidate["nom"] . "_" . $candidate["prenom"] . "_CP"; ?>">
+                    <img src="images/<?= $candidate["nom"] . "_" . $candidate["prenom"]; ?>" alt="photo candidat cp">
+                    <?= $candidate["nom"] . " " . $candidate["prenom"]; ?>
+            </label>
+
+            <input type="radio" name="choix_cp" id="<?= $candidate["nom"] . "_" . $candidate["prenom"] . "_CP"; ?>" value="<?= $candidate["nom"] . " " . $candidate["prenom"]; ?>" required>
+        </div>
+    <?php endforeach; ?>
+
     <div class="flex-item">
         <label for="blanc_vote_cp">
                 <img src="images/faux.png" alt="photo candidat cp">
