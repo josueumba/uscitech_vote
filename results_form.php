@@ -39,6 +39,34 @@ require_once(__DIR__ ."/treat_candidat.php");
         </div>
 
         <div>
+            <h2>delegue économie</h2>
+            <?php foreach($delegue_economie as $delegue): ?>
+                <p><?php echo $delegue["nom"]; ?> : <?php echo $delegue["voix"]; ?></p>
+            <?php endforeach; ?>
+        </div>
+
+        <div>
+            <h2>delegue ingénierie</h2>
+            <?php foreach($delegue_ingenierie as $delegue): ?>
+                <p><?php echo $delegue["nom"]; ?> : <?php echo $delegue["voix"]; ?></p>
+            <?php endforeach; ?>
+        </div>
+
+        <div>
+            <h2>delegue science de l'éducation</h2>
+            <?php foreach($delegue_education as $delegue): ?>
+                <p><?php echo $delegue["nom"]; ?> : <?php echo $delegue["voix"]; ?></p>
+            <?php endforeach; ?>
+        </div>
+
+        <div>
+            <h2>delegue sciences informatiques</h2>
+            <?php foreach($delegue_informatique as $delegue): ?>
+                <p><?php echo $delegue["nom"]; ?> : <?php echo $delegue["voix"]; ?></p>
+            <?php endforeach; ?>
+        </div>
+
+        <div>
             <h2>cp bac1 économie</h2>
             <?php foreach($cp_bac1_economie as $cp): ?>
                 <p><?php echo $cp["nom"]; ?> : <?php echo $cp["voix"]; ?></p>

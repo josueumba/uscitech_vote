@@ -2,42 +2,44 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Generation Time: Jan 23, 2025 at 09:32 PM
--- Server version: 8.0.35
--- PHP Version: 8.2.20
+-- Hôte : 127.0.0.1
+-- Généré le : sam. 01 fév. 2025 à 03:23
+-- Version du serveur : 10.4.32-MariaDB
+-- Version de PHP : 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
-DROP Database IF EXISTS `vote_uscitech`;
-CREATE DATABASE vote_uscitech;
-USE vote_uscitech;
 --
+-- Base de données : `vote_uscitech`
+--
+CREATE DATABASE IF NOT EXISTS `vote_uscitech` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `vote_uscitech`;
 
 -- --------------------------------------------------------
 
--- Supprimer les tables si elles existent déjà
-DROP TABLE IF EXISTS `vote`;
-DROP TABLE IF EXISTS `candidat`;
-DROP TABLE IF EXISTS `etudiant`;
-DROP TABLE IF EXISTS `poste`;
-DROP TABLE IF EXISTS `vote_2`;
+--
+-- Structure de la table `candidat`
+--
 
--- Table structure for table `candidat`
+DROP TABLE IF EXISTS `candidat`;
 CREATE TABLE `candidat` (
-  `id` int NOT NULL,
-  `etudiant` int NOT NULL,
-  `poste` int NOT NULL
+  `id` int(11) NOT NULL,
+  `etudiant` int(11) NOT NULL,
+  `poste` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table `candidat`
+--
+-- Déchargement des données de la table `candidat`
+--
+
 INSERT INTO `candidat` (`id`, `etudiant`, `poste`) VALUES
 (1, 1, 1),
 (2, 1, 3),
@@ -58,11 +60,21 @@ INSERT INTO `candidat` (`id`, `etudiant`, `poste`) VALUES
 (17, 8, 3),
 (18, 8, 4),
 (19, 9, 3),
-(20, 9, 4);
+(20, 9, 4),
+(21, 6, 5),
+(22, 7, 5),
+(23, 8, 5),
+(24, 9, 5);
 
--- Table structure for table `etudiant`
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `etudiant`
+--
+
+DROP TABLE IF EXISTS `etudiant`;
 CREATE TABLE `etudiant` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `nom` varchar(100) NOT NULL,
   `prenom` varchar(100) NOT NULL,
   `sexe` varchar(1) NOT NULL,
@@ -73,7 +85,10 @@ CREATE TABLE `etudiant` (
   `password` varchar(16) NOT NULL DEFAULT '1111'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table `etudiant`
+--
+-- Déchargement des données de la table `etudiant`
+--
+
 INSERT INTO `etudiant` (`id`, `nom`, `prenom`, `sexe`, `email`, `promotion`, `options`, `telephone`, `password`) VALUES
 (1, 'BLANC', 'VOTE', 'F', 'voteblancb3gl@gmail.com', 'BAC3', 'GENIE LOGICIEL', NULL, '1111'),
 (2, 'BLANC', 'VOTE', 'F', 'voteblancb3rt@gmail.com', 'BAC3', 'RESEAU TELECOMMUNICATION', NULL, '1111'),
@@ -85,79 +100,145 @@ INSERT INTO `etudiant` (`id`, `nom`, `prenom`, `sexe`, `email`, `promotion`, `op
 (8, 'BLANC', 'VOTE', 'F', 'voteblancb1i@gmail.com', 'BAC1', 'INGENIERIE', NULL, '1111'),
 (9, 'BLANC', 'VOTE', 'F', 'voteblancb1se@gmail.com', 'BAC1', 'SCIENCE EDUCATION', NULL, '1111');
 
--- Table structure for table `poste`
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `poste`
+--
+
+DROP TABLE IF EXISTS `poste`;
 CREATE TABLE `poste` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `titre` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table `poste`
+--
+-- Déchargement des données de la table `poste`
+--
+
 INSERT INTO `poste` (`id`, `titre`) VALUES
 (1, 'PRESIDENT'),
 (2, 'VICE PRESIDENT'),
 (3, 'CP'),
-(4, 'CPA');
+(4, 'CPA'),
+(5, 'DELEGUE');
 
--- Table structure for table `vote`
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `vote`
+--
+
+DROP TABLE IF EXISTS `vote`;
 CREATE TABLE `vote` (
-  `id` int NOT NULL,
-  `etudiant` int NOT NULL,
-  `candidat` int NOT NULL
+  `id` int(11) NOT NULL,
+  `etudiant` int(11) NOT NULL,
+  `candidat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Table structure for table `vote_2`
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `vote_2`
+--
+
+DROP TABLE IF EXISTS `vote_2`;
 CREATE TABLE `vote_2` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `nom` varchar(256) NOT NULL,
-  `voix` int NOT NULL
+  `voix` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Indexes for dumped tables
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `candidat`
+--
 ALTER TABLE `candidat`
   ADD PRIMARY KEY (`id`),
   ADD KEY `etudiant` (`etudiant`),
   ADD KEY `poste` (`poste`);
 
+--
+-- Index pour la table `etudiant`
+--
 ALTER TABLE `etudiant`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
+--
+-- Index pour la table `poste`
+--
 ALTER TABLE `poste`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Index pour la table `vote`
+--
 ALTER TABLE `vote`
   ADD PRIMARY KEY (`id`),
   ADD KEY `etudiant` (`etudiant`),
   ADD KEY `candidat` (`candidat`);
 
+--
+-- Index pour la table `vote_2`
+--
 ALTER TABLE `vote_2`
   ADD PRIMARY KEY (`id`);
 
--- AUTO_INCREMENT for dumped tables
-ALTER TABLE `candidat`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
 
+--
+-- AUTO_INCREMENT pour la table `candidat`
+--
+ALTER TABLE `candidat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT pour la table `etudiant`
+--
 ALTER TABLE `etudiant`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
+--
+-- AUTO_INCREMENT pour la table `poste`
+--
 ALTER TABLE `poste`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
+--
+-- AUTO_INCREMENT pour la table `vote`
+--
 ALTER TABLE `vote`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT pour la table `vote_2`
+--
 ALTER TABLE `vote_2`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
--- Constraints for dumped tables
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `candidat`
+--
 ALTER TABLE `candidat`
-  ADD CONSTRAINT `candidat_ibfk_1` FOREIGN KEY (`etudiant`) REFERENCES `etudiant` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `candidat_ibfk_2` FOREIGN KEY (`poste`) REFERENCES `poste` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `candidat_ibfk_1` FOREIGN KEY (`etudiant`) REFERENCES `etudiant` (`id`),
+  ADD CONSTRAINT `candidat_ibfk_2` FOREIGN KEY (`poste`) REFERENCES `poste` (`id`);
 
+--
+-- Contraintes pour la table `vote`
+--
 ALTER TABLE `vote`
-  ADD CONSTRAINT `vote_ibfk_1` FOREIGN KEY (`etudiant`) REFERENCES `etudiant` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `vote_ibfk_2` FOREIGN KEY (`candidat`) REFERENCES `candidat` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
+  ADD CONSTRAINT `vote_ibfk_1` FOREIGN KEY (`etudiant`) REFERENCES `etudiant` (`id`),
+  ADD CONSTRAINT `vote_ibfk_2` FOREIGN KEY (`candidat`) REFERENCES `candidat` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

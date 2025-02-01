@@ -9,6 +9,11 @@ require_once(__DIR__ ."/fonctions.php");
 $presidence= getPresidenceVote($mysqlClient, 'president');
 $vice_presidence= getPresidenceVote($mysqlClient, 'vice president');
 
+//Récupération des votes des delegues
+$delegue_economie= getDeleguesVote($mysqlClient, 'economie');
+$delegue_ingenierie= getDeleguesVote($mysqlClient, 'ingenierie');
+$delegue_education= getDeleguesVote($mysqlClient, 'science education');
+$delegue_informatique= getDeleguesVote($mysqlClient, 'sciences informatiques');
 
 //Récupération des votes des cp et cpa bac1
 $cp_bac1_economie= getCpsVote($mysqlClient, 'cp', 'bac1', 'economie');

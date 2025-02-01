@@ -40,6 +40,19 @@ function getCandidatesCps($mysqlClient, $titre, $promotion, $options) {
     return $results;
 }
 
+//Retrieve the delegue's candidates
+function getCandidatesDelegues($mysqlClient, $options) {
+    $query= "SELECT c.id, e.nom, e.prenom, p.titre as poste 
+            FROM candidat c JOIN poste p ON p.id= c.poste 
+            JOIN etudiant e ON e.id= c.etudiant WHERE p.titre= 'DELEGUE' 
+            AND e.options= :options 
+            AND CONCAT(e.nom,' ',e.prenom)!='BLANC VOTE'";
+    $stmt= $mysqlClient->prepare($query);
+    $stmt->execute(['options' => $options]);
+    $results= $stmt->fetchAll();
+    return $results;
+}
+
 //fonction pour récupérer les voix des candidats président et vice président
 function getPresidenceVote($mysqlClient, $titre) {
     $query= "SELECT c.id AS id, CONCAT(e.nom, ' ', e.prenom) AS nom, COUNT(v.candidat) AS voix
@@ -52,6 +65,22 @@ function getPresidenceVote($mysqlClient, $titre) {
             ORDER BY voix DESC";
     $stmt= $mysqlClient-> prepare($query);
     $stmt->execute(['titre' => $titre]) or die(print_r($mysqlClient->errorInfo()));
+    $result= $stmt->fetchAll();
+    return $result;
+}
+
+//fonction pour récupérer les voix des candidats delegue
+function getDeleguesVote($mysqlClient, $options) {
+    $query= "SELECT CONCAT(e.nom, ' ', e.prenom) AS nom, COUNT(v.candidat) AS voix
+            FROM etudiant e
+            LEFT JOIN candidat c ON e.id = c.etudiant
+            LEFT JOIN vote v ON c.id = v.candidat
+            LEFT JOIN poste p ON p.id = c.poste
+            WHERE p.titre = 'delegue' AND e.options= :options
+            GROUP BY e.nom, e.prenom
+            ORDER BY voix DESC";
+    $stmt= $mysqlClient-> prepare($query);
+    $stmt->execute(['options' => $options]) or die(print_r($mysqlClient->errorInfo()));
     $result= $stmt->fetchAll();
     return $result;
 }

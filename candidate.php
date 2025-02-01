@@ -68,13 +68,14 @@
                         <option value="VICE PRESIDENT">VICE PRESIDENT</option>
                         <option value="CP">CP</option>
                         <option value="CPA">CPA</option>
+                        <option value="DELEGUE">DELEGUE</option>
                     </select>
                 </div>
 
-                <div>
+                <!-- <div>
                     <label for="photo">Choisissez une photo :</label>
-                    <input type="file" name="photo" id="photo" required>
-                </div>
+                    <input type="file" name="photo" id="photo">
+                </div> -->
 
                 <button type="submit">POSTULER</button>
             </div>

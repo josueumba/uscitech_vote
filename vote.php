@@ -5,8 +5,19 @@ if (session_status() == PHP_SESSION_NONE) {
 
 $promotion= $_SESSION["logged_student"]["promotion"];
 $options= $_SESSION["logged_student"]["options"];
-$path= strtolower($promotion.$options);
-$path= str_replace(' ', '', $path);
+$faculte= $options;
+
+$pathCp= strtolower($promotion.$options);
+$pathCp= str_replace(' ', '', $pathCp);
+
+if($faculte === 'GENIE LOGICIEL' || $faculte === 'RESEAU TELECOMMUNICATION') {
+    $faculte= 'SCIENCES INFORMATIQUES';
+} else if($faculte === 'GENIE ELECTRIQUE') {
+    $faculte= 'INGENIERIE';
+}
+
+$pathDelegue= strtolower($faculte);
+$pathDelegue= str_replace(' ', '', $pathDelegue);
 ?>
 
 <!DOCTYPE html>
@@ -32,11 +43,14 @@ $path= str_replace(' ', '', $path);
             <h1>VICE - PRESIDENT</h1>
             <?php require_once(__DIR__ . "/vicepresident_form.php") ?>
 
+            <h1>DELEGUE</h1>
+            <?php require_once(__DIR__ . "/delegues/delegue" . $pathDelegue . "_form.php") ?>
+
             <h1>CP</h1>
-            <?php require_once(__DIR__ . "/cps/cp" . $path . "_form.php") ?>
+            <?php require_once(__DIR__ . "/cps/cp" . $pathCp . "_form.php") ?>
 
             <h1>CPA</h1>
-            <?php require_once(__DIR__ . "/cps/cpa" . $path . "_form.php") ?>
+            <?php require_once(__DIR__ . "/cps/cpa" . $pathCp . "_form.php") ?>
 
             <button type="submit">VOTER</button>
 
