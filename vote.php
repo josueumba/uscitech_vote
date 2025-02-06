@@ -43,13 +43,23 @@ $pathDelegue= str_replace(' ', '', $pathDelegue);
             <h1>VICE - PRESIDENT</h1>
             <?php require_once(__DIR__ . "/vicepresident_form.php") ?>
 
-            <h1>DELEGUE</h1>
-            <?php require_once(__DIR__ . "/delegues/delegue" . $pathDelegue . "_form.php") ?>
-
-            <h1>CP</h1>
+            <?php if($options != 'SCIENCE EDUCATION') : ?>
+                <h1>DELEGUE</h1>
+                <?php require_once(__DIR__ . "/delegues/delegue" . $pathDelegue . "_form.php") ?>
+            <?php endif; ?>
+            
+            <?php if($options != 'SCIENCE EDUCATION') : ?>
+                <h1>CP</h1>
+            <?php else : ?>
+                <h1>CP (DELEGUE)</h1>
+            <?php endif ?>
             <?php require_once(__DIR__ . "/cps/cp" . $pathCp . "_form.php") ?>
 
-            <h1>CPA</h1>
+            <?php if($options != 'SCIENCE EDUCATION') : ?>
+                <h1>CPA</h1>
+            <?php else : ?>
+                <h1>CPA (DELEGUE ADJOINT)</h1>
+            <?php endif ?>
             <?php require_once(__DIR__ . "/cps/cpa" . $pathCp . "_form.php") ?>
 
             <button type="submit">VOTER</button>
