@@ -10,10 +10,16 @@ $presidence= getPresidenceVote($mysqlClient, 'president');
 $vice_presidence= getPresidenceVote($mysqlClient, 'vice president');
 
 //Récupération des votes des delegues
-$delegue_economie= getDeleguesVote($mysqlClient, 'economie');
-$delegue_ingenierie= getDeleguesVote($mysqlClient, 'ingenierie');
-$delegue_education= getDeleguesVote($mysqlClient, 'science education');
-$delegue_informatique= getDeleguesVote($mysqlClient, 'sciences informatiques');
+$delegue_economie= getDeleguesVote($mysqlClient, 'DELEGUE', 'economie');
+$delegue_ingenierie= getDeleguesVote($mysqlClient, 'DELEGUE', 'ingenierie');
+$delegue_education= getDeleguesVote($mysqlClient, 'DELEGUE', 'science education');
+$delegue_informatique= getDeleguesVote($mysqlClient, 'DELEGUE', 'sciences informatiques');
+
+//Récupération des votes des delegues adjoints
+$delegue_adjoint_economie= getDeleguesVote($mysqlClient, 'DELEGUE ADJOINT', 'economie');
+$delegue_adjoint_ingenierie= getDeleguesVote($mysqlClient, 'DELEGUE ADJOINT', 'ingenierie');
+$delegue_adjoint_education= getDeleguesVote($mysqlClient, 'DELEGUE ADJOINT', 'science education');
+$delegue_adjoint_informatique= getDeleguesVote($mysqlClient, 'DELEGUE ADJOINT', 'sciences informatiques');
 
 //Récupération des votes des cp et cpa bac1
 $cp_bac1_economie= getCpsVote($mysqlClient, 'cp', 'bac1', 'economie');
@@ -43,3 +49,4 @@ $cp_bac3_genieelectrique= getCpsVote($mysqlClient, 'cp', 'bac3', 'genie electriq
 $cpa_bac3_genielogiciel= getCpsVote($mysqlClient, 'cpa', 'bac3', 'genie logiciel');
 $cpa_bac3_reseau= getCpsVote($mysqlClient, 'cpa', 'bac3', 'reseau telecommunication');
 $cpa_bac3_genieelectrique= getCpsVote($mysqlClient, 'cpa', 'bac3', 'genie electrique');
+

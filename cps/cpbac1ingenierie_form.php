@@ -12,7 +12,7 @@ $cps= getCandidatesCps($mysqlClient, 'CP', 'BAC1', 'INGENIERIE');
     <?php foreach($cps as $candidate) : ?>
         <div class="flex-item">
             <label for="<?= $candidate["nom"] . "_" . $candidate["prenom"] . "_CP"; ?>">
-                    <img src="images/<?= $candidate["nom"] . "_" . $candidate["prenom"]; ?>" alt="photo candidat cp">
+                    <img src="images/<?= strtolower($candidate["nom"] . "_" . $candidate["prenom"]) . ".jpg"; ?>" alt="photo candidat cp">
                     <?= $candidate["nom"] . " " . $candidate["prenom"]; ?>
             </label>
 

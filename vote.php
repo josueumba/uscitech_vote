@@ -3,6 +3,12 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+require_once(__DIR__ ."/fonctions.php");
+
+if($_SESSION["logged_student"]["promotion"] == 'GOLD') {
+    redirectToUrl('home.php');
+}
+
 $promotion= $_SESSION["logged_student"]["promotion"];
 $options= $_SESSION["logged_student"]["options"];
 $faculte= $options;
@@ -46,6 +52,11 @@ $pathDelegue= str_replace(' ', '', $pathDelegue);
             <?php if($options != 'SCIENCE EDUCATION') : ?>
                 <h1>DELEGUE</h1>
                 <?php require_once(__DIR__ . "/delegues/delegue" . $pathDelegue . "_form.php") ?>
+            <?php endif; ?>
+
+            <?php if($options != 'SCIENCE EDUCATION') : ?>
+                <h1>DELEGUE ADJOINT</h1>
+                <?php require_once(__DIR__ . "/delegues/delegueadjoint" . $pathDelegue . "_form.php") ?>
             <?php endif; ?>
             
             <?php if($options != 'SCIENCE EDUCATION') : ?>

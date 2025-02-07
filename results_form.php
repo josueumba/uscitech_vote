@@ -5,6 +5,13 @@ if (session_status() == PHP_SESSION_NONE) {
 
 require_once(__DIR__ ."/results.php");
 require_once(__DIR__ ."/treat_candidat.php");
+require_once(__DIR__ ."/fonctions.php");
+
+if($_SESSION["logged_student"]["promotion"] == 'BAC1' || 
+    $_SESSION["logged_student"]["promotion"] == 'BAC2'
+) {
+    redirectToUrl('home.php');
+}
 
 ?>
 
@@ -46,6 +53,13 @@ require_once(__DIR__ ."/treat_candidat.php");
         </div>
 
         <div>
+            <h2>delegue adjoint économie</h2>
+            <?php foreach($delegue_adjoint_economie as $delegue): ?>
+                <p><?php echo $delegue["nom"]; ?> : <?php echo $delegue["voix"]; ?></p>
+            <?php endforeach; ?>
+        </div>
+
+        <div>
             <h2>delegue ingénierie</h2>
             <?php foreach($delegue_ingenierie as $delegue): ?>
                 <p><?php echo $delegue["nom"]; ?> : <?php echo $delegue["voix"]; ?></p>
@@ -53,6 +67,13 @@ require_once(__DIR__ ."/treat_candidat.php");
         </div>
 
         <div>
+            <h2>delegue adjoint ingénierie</h2>
+            <?php foreach($delegue_adjoint_ingenierie as $delegue): ?>
+                <p><?php echo $delegue["nom"]; ?> : <?php echo $delegue["voix"]; ?></p>
+            <?php endforeach; ?>
+        </div>
+
+        <!-- <div>
             <h2>delegue science de l'éducation</h2>
             <?php foreach($delegue_education as $delegue): ?>
                 <p><?php echo $delegue["nom"]; ?> : <?php echo $delegue["voix"]; ?></p>
@@ -60,8 +81,22 @@ require_once(__DIR__ ."/treat_candidat.php");
         </div>
 
         <div>
+            <h2>delegue adjoint science de l'éducation</h2>
+            <?php foreach($delegue_adjoint_education as $delegue): ?>
+                <p><?php echo $delegue["nom"]; ?> : <?php echo $delegue["voix"]; ?></p>
+            <?php endforeach; ?>
+        </div> -->
+
+        <div>
             <h2>delegue sciences informatiques</h2>
             <?php foreach($delegue_informatique as $delegue): ?>
+                <p><?php echo $delegue["nom"]; ?> : <?php echo $delegue["voix"]; ?></p>
+            <?php endforeach; ?>
+        </div>
+
+        <div>
+            <h2>delegue adjoint sciences informatiques</h2>
+            <?php foreach($delegue_adjoint_informatique as $delegue): ?>
                 <p><?php echo $delegue["nom"]; ?> : <?php echo $delegue["voix"]; ?></p>
             <?php endforeach; ?>
         </div>

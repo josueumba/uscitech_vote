@@ -12,7 +12,7 @@ $vice_presidents= getCandidates($mysqlClient, 'VICE PRESIDENT');
     <?php foreach($vice_presidents as $candidate) : ?>
         <div class="flex-item">
             <label for="<?= $candidate["nom"] . "_" . $candidate["prenom"] . "_VP"; ?>">
-                    <img src="images/<?= $candidate["nom"] . "_" . $candidate["prenom"]; ?>" alt="photo candidat vice-président">
+                    <img src="images/<?= strtolower($candidate["nom"] . "_" . $candidate["prenom"]) . ".jpg"; ?>" alt="photo candidat vice-président">
                     <?= $candidate["nom"] . " " . $candidate["prenom"]; ?>
             </label>
 

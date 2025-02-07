@@ -1,3 +1,18 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+require_once(__DIR__ . "/fonctions.php");
+
+if($_SESSION["logged_student"]["promotion"] == 'BAC1' || 
+    $_SESSION["logged_student"]["promotion"] == 'BAC2'
+) {
+    redirectToUrl('home.php');
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,6 +84,7 @@
                         <option value="CP">CP</option>
                         <option value="CPA">CPA</option>
                         <option value="DELEGUE">DELEGUE</option>
+                        <option value="DELEGUE ADJOINT">DELEGUE ADJOINT</option>
                     </select>
                 </div>
 
