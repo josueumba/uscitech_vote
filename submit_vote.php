@@ -19,6 +19,7 @@ if($faculte === 'GENIE LOGICIEL' || $faculte === 'RESEAU TELECOMMUNICATION') {
 $choix_president= strip_tags($_POST["choix_president"]);
 $choix_vicepresident= strip_tags($_POST["choix_vicepresident"]);
 $choix_delegue= strip_tags($_POST["choix_delegue"]);
+$choix_delegue_adjoint= strip_tags($_POST["choix_delegue_adjoint"]);
 $choix_cp= strip_tags($_POST["choix_cp"]);
 $choix_cpa= strip_tags($_POST["choix_cpa"]);
 
@@ -26,16 +27,14 @@ $choix_cpa= strip_tags($_POST["choix_cpa"]);
 $full_name= $_SESSION["logged_student"]["prenom"] . " " . $_SESSION["logged_student"]["nom"];
 $hasVotedQuery= "SELECT COUNT(*) FROM vote v JOIN etudiant e ON e.id= v.etudiant WHERE CONCAT(e.prenom, ' ', e.nom)= :etudiant";
 $stmtVoted= $mysqlClient->prepare($hasVotedQuery);
-$stmtVoted->execute([
-    ":etudiant" => $full_name
-]) or die(print_r($mysqlClient->errorInfo())); 
+$stmtVoted->execute([":etudiant" => $full_name]) or die(print_r($mysqlClient->errorInfo())); 
 $hasVoted = $stmtVoted-> fetch();
 $hasVoted= (int)$hasVoted[0];
 
-if(isset($choix_president) && isset($choix_vicepresident) && isset($choix_cp) && isset($choix_cpa)) {
+if(isset($choix_president, $choix_vicepresident, $choix_cp, $choix_cpa, $choix_delegue, $choix_delegue_adjoint)) {
 
     //Si l'étudiant a déjà voté
-    if($hasVoted >= 5) {
+    if($hasVoted >= 6) {
         $_SESSION["voted_error_message"]= "Vous avez déjà voté";
         redirectToUrl("votesuccess.php");
         return;
@@ -54,14 +53,18 @@ if(isset($choix_president) && isset($choix_vicepresident) && isset($choix_cp) &&
     }
 
     // Fonction pour récupérer l'identifiant du delegue
-    function getCandidateDeleguesId($mysqlClient, $choix, $options) {
+    function getCandidateDeleguesId($mysqlClient, $choix, $titre, $options) {
         $query = "SELECT c.id FROM candidat c 
                 JOIN etudiant e ON c.etudiant = e.id 
                 JOIN poste p ON p.id = c.poste 
-                WHERE p.titre = 'delegue' AND CONCAT(e.nom, ' ', e.prenom) = :choix 
+                WHERE p.titre = :titre AND CONCAT(e.nom, ' ', e.prenom) = :choix 
                 AND e.options= :options";
         $stmt = $mysqlClient->prepare($query);
-        $stmt->execute(['choix' => $choix, 'options' => $options]);
+        $stmt->execute([
+            'choix' => $choix,
+            'options' => $options,
+            'titre' => $titre
+        ]);
         $result= $stmt->fetch();
         return (int)$result[0];
     }
@@ -96,9 +99,17 @@ if(isset($choix_president) && isset($choix_vicepresident) && isset($choix_cp) &&
     }
 
     // Récupération de l'identifiant du delegue
-    $id_delegue = getCandidateDeleguesId($mysqlClient, $choix_delegue, $faculte);
+    $id_delegue = getCandidateDeleguesId($mysqlClient, $choix_delegue, 'DELEGUE', $faculte);
     if ($id_delegue === false) {
         $_SESSION["erreur_envoi"] = "Le Delegue choisi n'existe pas.";
+        redirectToUrl("vote.php");
+        return;
+    }
+
+    // Récupération de l'identifiant du delegue adjoint
+    $id_delegue_adjoint = getCandidateDeleguesId($mysqlClient, $choix_delegue_adjoint, 'DELEGUE ADJOINT', $faculte);
+    if ($id_delegue_adjoint === false) {
+        $_SESSION["erreur_envoi"] = "Le Delegue adjoint choisi n'existe pas.";
         redirectToUrl("vote.php");
         return;
     }
@@ -139,6 +150,7 @@ if(isset($choix_president) && isset($choix_vicepresident) && isset($choix_cp) &&
         insertVote($mysqlClient, $id_etudiant, $id_president);
         insertVote($mysqlClient, $id_etudiant, $id_vicepresident);
         insertVote($mysqlClient, $id_etudiant, $id_delegue);
+        insertVote($mysqlClient, $id_etudiant, $id_delegue_adjoint);
         insertVote($mysqlClient, $id_etudiant, $id_cp);
         insertVote($mysqlClient, $id_etudiant, $id_cpa);
 

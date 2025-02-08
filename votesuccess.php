@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+require_once(__DIR__ ."/fonctions.php");
+
+if(!isset($_SESSION["logged_student"])) {
+    redirectToUrl('login.php');
+}
+
 ?>
 
 <!DOCTYPE html>

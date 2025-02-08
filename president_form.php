@@ -13,7 +13,7 @@ $presidents= getCandidates($mysqlClient, 'PRESIDENT');
         <div class="flex-item">
             <label for="<?= $candidate["nom"] . "_" . $candidate["prenom"] . "_P"; ?>">
                     <img src="images/<?= $candidate["nom"] . "_" . $candidate["prenom"] . ".jpg"; ?>" alt="photo candidat président">
-                    <?= $candidate["nom"] . " " . $candidate["prenom"]; ?>
+                    <?= strtoupper($candidate["nom"] . " " . $candidate["prenom"]); ?>
             </label>
 
             <input type="radio" name="choix_president" id="<?= $candidate["nom"] . "_" . $candidate["prenom"] . "_P"; ?>" value="<?= $candidate["nom"] . " " . $candidate["prenom"]; ?>" required>
@@ -26,7 +26,7 @@ $presidents= getCandidates($mysqlClient, 'PRESIDENT');
                 VOTE BLANC
         </label>
 
-        <input type="radio" name="choix_president" id="BLANC_VOTE_P" value="BLANC VOTE">
+        <input type="radio" name="choix_president" id="BLANC_VOTE_P" value="BLANC VOTE" required>
     </div>
         
 </div>

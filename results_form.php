@@ -7,6 +7,10 @@ require_once(__DIR__ ."/results.php");
 require_once(__DIR__ ."/treat_candidat.php");
 require_once(__DIR__ ."/fonctions.php");
 
+if(!isset($_SESSION["logged_student"])) {
+    redirectToUrl('login.php');
+}
+
 if($_SESSION["logged_student"]["promotion"] == 'BAC1' || 
     $_SESSION["logged_student"]["promotion"] == 'BAC2'
 ) {

@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 require_once(__DIR__ ."/../fonctions.php");
 
-$delegues_adjoint= getCandidatesDelegues($mysqlClient, 'DELEGUE ADJOINT', 'INGENIERIE');
+$delegues_adjoint= getCandidatesDeleguesI($mysqlClient, 'DELEGUE ADJOINT', 'INGENIERIE', 'GENIE ELECTRIQUE');
 ?>
 
 <div class="flex-container">
@@ -13,7 +13,7 @@ $delegues_adjoint= getCandidatesDelegues($mysqlClient, 'DELEGUE ADJOINT', 'INGEN
         <div class="flex-item">
             <label for="<?= $candidate["nom"] . "_" . $candidate["prenom"] . "_DA"; ?>">
                     <img src="images/<?= strtolower($candidate["nom"] . "_" . $candidate["prenom"]) . ".jpg"; ?>" alt="photo candidat delegue adjoint">
-                    <?= $candidate["nom"] . " " . $candidate["prenom"]; ?>
+                    <?= strtoupper($candidate["nom"] . " " . $candidate["prenom"]); ?>
             </label>
 
             <input type="radio" name="choix_delegue_adjoint" id="<?= $candidate["nom"] . "_" . $candidate["prenom"] . "_DA"; ?>" value="<?= $candidate["nom"] . " " . $candidate["prenom"]; ?>" required>
@@ -26,7 +26,7 @@ $delegues_adjoint= getCandidatesDelegues($mysqlClient, 'DELEGUE ADJOINT', 'INGEN
                 VOTE BLANC
         </label>
 
-        <input type="radio" name="choix_delegue_adjoint" id="blanc_vote_da" value="BLANC VOTE">
+        <input type="radio" name="choix_delegue_adjoint" id="blanc_vote_da" value="BLANC VOTE" required>
     </div>
         
 </div>

@@ -48,10 +48,17 @@ if(!isset($idEtudiantPostule, $idPoste)) {
     redirectToUrl('candidate.php');
     return;
 } else {
-    //Register student as a candidate
-    $query= "INSERT INTO candidat(etudiant, poste) VALUES(:etudiant, :poste)";
-    $stmt= $mysqlClient->prepare($query);
-    $stmt->execute(['etudiant' => $idEtudiantPostule, 'poste' => $idPoste]);
-    redirectToUrl('home.php');
-    return;
+    if($_SESSION["logged_student"]["promotion"] == 'GOLD') {
+        //Register student as a candidate
+        $query= "INSERT INTO candidat(etudiant, poste) VALUES(:etudiant, :poste)";
+        $stmt= $mysqlClient->prepare($query);
+        $stmt->execute(['etudiant' => $idEtudiantPostule, 'poste' => $idPoste]);
+        redirectToUrl('home.php');
+        return;
+    } else {
+        $_SESSION['login_error_message'] = "Seul l'administrateur peut ajouter un candidat";
+        redirectToUrl('candidate.php');
+        return;
+    }
+    
 }

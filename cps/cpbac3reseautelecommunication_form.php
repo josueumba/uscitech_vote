@@ -13,7 +13,7 @@ $cps= getCandidatesCps($mysqlClient, 'CP', 'BAC3', 'RESEAU TELECOMMUNICATION');
         <div class="flex-item">
             <label for="<?= $candidate["nom"] . "_" . $candidate["prenom"] . "_CP"; ?>">
                     <img src="images/<?= strtolower($candidate["nom"] . "_" . $candidate["prenom"]) . ".jpg"; ?>" alt="photo candidat cp">
-                    <?= $candidate["nom"] . " " . $candidate["prenom"]; ?>
+                    <?= strtoupper($candidate["nom"] . " " . $candidate["prenom"]); ?>
             </label>
 
             <input type="radio" name="choix_cp" id="<?= $candidate["nom"] . "_" . $candidate["prenom"] . "_CP"; ?>" value="<?= $candidate["nom"] . " " . $candidate["prenom"]; ?>" required>
@@ -26,7 +26,7 @@ $cps= getCandidatesCps($mysqlClient, 'CP', 'BAC3', 'RESEAU TELECOMMUNICATION');
                 VOTE BLANC
         </label>
 
-        <input type="radio" name="choix_cp" id="blanc_vote_cp" value="BLANC VOTE">
+        <input type="radio" name="choix_cp" id="blanc_vote_cp" value="BLANC VOTE" required>
     </div>
         
 </div>

@@ -13,7 +13,7 @@ $cpas= getCandidatesCps($mysqlClient, 'CPA', 'BAC2', 'ECONOMIE');
         <div class="flex-item">
             <label for="<?= $candidate["nom"] . "_" . $candidate["prenom"] . "_CPA"; ?>">
                     <img src="images/<?= strtolower($candidate["nom"] . "_" . $candidate["prenom"]) . ".jpg"; ?>" alt="photo candidat cpa">
-                    <?= $candidate["nom"] . " " . $candidate["prenom"]; ?>
+                    <?= strtoupper($candidate["nom"] . " " . $candidate["prenom"]); ?>
             </label>
 
             <input type="radio" name="choix_cpa" id="<?= $candidate["nom"] . "_" . $candidate["prenom"] . "_CPA"; ?>" value="<?= $candidate["nom"] . " " . $candidate["prenom"]; ?>" required>
@@ -26,7 +26,7 @@ $cpas= getCandidatesCps($mysqlClient, 'CPA', 'BAC2', 'ECONOMIE');
                 VOTE BLANC
         </label>
 
-        <input type="radio" name="choix_cpa" id="blanc_vote_cpa" value="BLANC VOTE">
+        <input type="radio" name="choix_cpa" id="blanc_vote_cpa" value="BLANC VOTE" required>
     </div>
         
 </div>

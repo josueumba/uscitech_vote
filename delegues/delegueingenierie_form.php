@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 require_once(__DIR__ ."/../fonctions.php");
 
-$delegues= getCandidatesDelegues($mysqlClient, 'DELEGUE', 'INGENIERIE');
+$delegues= getCandidatesDeleguesI($mysqlClient, 'DELEGUE', 'INGENIERIE', 'GENIE ELECTRIQUE');
 ?>
 
 <div class="flex-container">
@@ -13,7 +13,7 @@ $delegues= getCandidatesDelegues($mysqlClient, 'DELEGUE', 'INGENIERIE');
         <div class="flex-item">
             <label for="<?= $candidate["nom"] . "_" . $candidate["prenom"] . "_D"; ?>">
                     <img src="images/<?= strtolower($candidate["nom"] . "_" . $candidate["prenom"]) . ".jpg"; ?>" alt="photo candidat delegue">
-                    <?= $candidate["nom"] . " " . $candidate["prenom"]; ?>
+                    <?= strtoupper($candidate["nom"] . " " . $candidate["prenom"]); ?>
             </label>
 
             <input type="radio" name="choix_delegue" id="<?= $candidate["nom"] . "_" . $candidate["prenom"] . "_D"; ?>" value="<?= $candidate["nom"] . " " . $candidate["prenom"]; ?>" required>
@@ -26,7 +26,7 @@ $delegues= getCandidatesDelegues($mysqlClient, 'DELEGUE', 'INGENIERIE');
                 VOTE BLANC
         </label>
 
-        <input type="radio" name="choix_delegue" id="blanc_vote_d" value="BLANC VOTE">
+        <input type="radio" name="choix_delegue" id="blanc_vote_d" value="BLANC VOTE" required>
     </div>
         
 </div>

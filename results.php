@@ -10,16 +10,16 @@ $presidence= getPresidenceVote($mysqlClient, 'president');
 $vice_presidence= getPresidenceVote($mysqlClient, 'vice president');
 
 //Récupération des votes des delegues
-$delegue_economie= getDeleguesVote($mysqlClient, 'DELEGUE', 'economie');
-$delegue_ingenierie= getDeleguesVote($mysqlClient, 'DELEGUE', 'ingenierie');
-$delegue_education= getDeleguesVote($mysqlClient, 'DELEGUE', 'science education');
-$delegue_informatique= getDeleguesVote($mysqlClient, 'DELEGUE', 'sciences informatiques');
+$delegue_economie= getDeleguesVoteE($mysqlClient, 'DELEGUE', 'economie');
+$delegue_ingenierie= getDeleguesVoteI($mysqlClient, 'DELEGUE', 'ingenierie', 'GENIE ELECTRIQUE');
+//$delegue_education= getDeleguesVoteE($mysqlClient, 'DELEGUE', 'science education');
+$delegue_informatique= getDeleguesVoteSI($mysqlClient, 'DELEGUE', 'sciences informatiques', 'GENIE LOGICIEL', 'RESEAU TELECOMMUNICATION');
 
 //Récupération des votes des delegues adjoints
-$delegue_adjoint_economie= getDeleguesVote($mysqlClient, 'DELEGUE ADJOINT', 'economie');
-$delegue_adjoint_ingenierie= getDeleguesVote($mysqlClient, 'DELEGUE ADJOINT', 'ingenierie');
-$delegue_adjoint_education= getDeleguesVote($mysqlClient, 'DELEGUE ADJOINT', 'science education');
-$delegue_adjoint_informatique= getDeleguesVote($mysqlClient, 'DELEGUE ADJOINT', 'sciences informatiques');
+$delegue_adjoint_economie= getDeleguesVoteE($mysqlClient, 'DELEGUE ADJOINT', 'economie');
+$delegue_adjoint_ingenierie= getDeleguesVoteI($mysqlClient, 'DELEGUE ADJOINT', 'ingenierie', 'GENIE ELECTRIQUE');
+//$delegue_adjoint_education= getDeleguesVoteE($mysqlClient, 'DELEGUE ADJOINT', 'science education');
+$delegue_adjoint_informatique= getDeleguesVoteSI($mysqlClient, 'DELEGUE ADJOINT', 'sciences informatiques', 'GENIE LOGICIEL', 'RESEAU TELECOMMUNICATION');
 
 //Récupération des votes des cp et cpa bac1
 $cp_bac1_economie= getCpsVote($mysqlClient, 'cp', 'bac1', 'economie');
