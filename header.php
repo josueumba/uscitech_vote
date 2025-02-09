@@ -14,7 +14,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
     <?php if(isset($_SESSION['logged_student'])): ?>
         <p style="font-weight:600; border:1px solid white; border-radius: 50px; padding:5px 10px">
-            <?php echo $_SESSION['logged_student']['prenom'] . " " . $_SESSION['logged_student']['nom'] ?>
+            <?= $_SESSION['logged_student']['prenom'] . " " . $_SESSION['logged_student']['nom'] ?>
         </p>
     <?php endif; ?>
 

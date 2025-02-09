@@ -18,10 +18,13 @@ if($faculte === 'GENIE LOGICIEL' || $faculte === 'RESEAU TELECOMMUNICATION') {
 
 $choix_president= strip_tags($_POST["choix_president"]);
 $choix_vicepresident= strip_tags($_POST["choix_vicepresident"]);
-$choix_delegue= strip_tags($_POST["choix_delegue"]);
-$choix_delegue_adjoint= strip_tags($_POST["choix_delegue_adjoint"]);
 $choix_cp= strip_tags($_POST["choix_cp"]);
 $choix_cpa= strip_tags($_POST["choix_cpa"]);
+
+if($_SESSION["logged_student"]["options"] !== 'SCIENCE EDUCATION') {
+    $choix_delegue= strip_tags($_POST["choix_delegue"]);
+    $choix_delegue_adjoint= strip_tags($_POST["choix_delegue_adjoint"]);
+}
 
 //Vérification si la personne a déjà voté
 $full_name= $_SESSION["logged_student"]["prenom"] . " " . $_SESSION["logged_student"]["nom"];
@@ -31,10 +34,13 @@ $stmtVoted->execute([":etudiant" => $full_name]) or die(print_r($mysqlClient->er
 $hasVoted = $stmtVoted-> fetch();
 $hasVoted= (int)$hasVoted[0];
 
-if(isset($choix_president, $choix_vicepresident, $choix_cp, $choix_cpa, $choix_delegue, $choix_delegue_adjoint)) {
+if (
+    isset($choix_president, $choix_vicepresident, $choix_cp, $choix_cpa, $choix_delegue, $choix_delegue_adjoint) ||
+    isset($choix_president, $choix_vicepresident, $choix_cp, $choix_cpa)
+) {
 
     //Si l'étudiant a déjà voté
-    if($hasVoted >= 6) {
+    if($hasVoted > 0) {
         $_SESSION["voted_error_message"]= "Vous avez déjà voté";
         redirectToUrl("votesuccess.php");
         return;
@@ -53,16 +59,21 @@ if(isset($choix_president, $choix_vicepresident, $choix_cp, $choix_cpa, $choix_d
     }
 
     // Fonction pour récupérer l'identifiant du delegue
-    function getCandidateDeleguesId($mysqlClient, $choix, $titre, $options) {
+    function getCandidateDeleguesId($mysqlClient, $choix, $titre, $options1, $options2, $options3, $options4, $options5, $options6) {
         $query = "SELECT c.id FROM candidat c 
                 JOIN etudiant e ON c.etudiant = e.id 
                 JOIN poste p ON p.id = c.poste 
                 WHERE p.titre = :titre AND CONCAT(e.nom, ' ', e.prenom) = :choix 
-                AND e.options= :options";
+                AND (e.options= :options1 OR e.options= :options2 OR e.options= :options3 OR e.options= :options4 OR e.options= :options5 OR e.options= :options6)";
         $stmt = $mysqlClient->prepare($query);
         $stmt->execute([
             'choix' => $choix,
-            'options' => $options,
+            'options1' => $options1,
+            'options2' => $options2,
+            'options3' => $options3,
+            'options4' => $options4,
+            'options5' => $options5,
+            'options6' => $options6,
             'titre' => $titre
         ]);
         $result= $stmt->fetch();
@@ -98,22 +109,25 @@ if(isset($choix_president, $choix_vicepresident, $choix_cp, $choix_cpa, $choix_d
         return;
     }
 
-    // Récupération de l'identifiant du delegue
-    $id_delegue = getCandidateDeleguesId($mysqlClient, $choix_delegue, 'DELEGUE', $faculte);
-    if ($id_delegue === false) {
-        $_SESSION["erreur_envoi"] = "Le Delegue choisi n'existe pas.";
-        redirectToUrl("vote.php");
-        return;
-    }
+    if($_SESSION["logged_student"]["options"] !== 'SCIENCE EDUCATION') {
 
-    // Récupération de l'identifiant du delegue adjoint
-    $id_delegue_adjoint = getCandidateDeleguesId($mysqlClient, $choix_delegue_adjoint, 'DELEGUE ADJOINT', $faculte);
-    if ($id_delegue_adjoint === false) {
-        $_SESSION["erreur_envoi"] = "Le Delegue adjoint choisi n'existe pas.";
-        redirectToUrl("vote.php");
-        return;
-    }
+        // Récupération de l'identifiant du delegue
+        $id_delegue = getCandidateDeleguesId($mysqlClient, $choix_delegue, 'DELEGUE', 'GENIE LOGICIEL', 'GENIE ELECTRIQUE', 'RESEAU TELECOMMUNICATION', 'SCIENCES INFORMATIQUES', 'INGENIERIE', 'ECONOMIE');
+        if ($id_delegue === false) {
+            $_SESSION["erreur_envoi"] = "Le Delegue choisi n'existe pas.";
+            redirectToUrl("vote.php");
+            return;
+        }
 
+        // Récupération de l'identifiant du delegue adjoint
+        $id_delegue_adjoint = getCandidateDeleguesId($mysqlClient, $choix_delegue_adjoint, 'DELEGUE ADJOINT', 'GENIE LOGICIEL', 'GENIE ELECTRIQUE', 'RESEAU TELECOMMUNICATION', 'SCIENCES INFORMATIQUES', 'INGENIERIE', 'ECONOMIE');
+        if ($id_delegue_adjoint === false) {
+            $_SESSION["erreur_envoi"] = "Le Delegue adjoint choisi n'existe pas.";
+            redirectToUrl("vote.php");
+            return;
+        }
+    }
+    
     // Récupération de l'identifiant du cp
     $id_cp = getCandidateCpsId($mysqlClient, 'cp', $choix_cp, $promo_etudiant, $options_etudiant);
     if ($id_cp === false) {
@@ -149,10 +163,13 @@ if(isset($choix_president, $choix_vicepresident, $choix_cp, $choix_cpa, $choix_d
         // Envoi des votes dans la base de données
         insertVote($mysqlClient, $id_etudiant, $id_president);
         insertVote($mysqlClient, $id_etudiant, $id_vicepresident);
-        insertVote($mysqlClient, $id_etudiant, $id_delegue);
-        insertVote($mysqlClient, $id_etudiant, $id_delegue_adjoint);
         insertVote($mysqlClient, $id_etudiant, $id_cp);
         insertVote($mysqlClient, $id_etudiant, $id_cpa);
+        if($_SESSION["logged_student"]["options"] !== 'SCIENCE EDUCATION') {
+            insertVote($mysqlClient, $id_etudiant, $id_delegue);
+            insertVote($mysqlClient, $id_etudiant, $id_delegue_adjoint);
+        }
+        
 
         // Validation de la transaction
         $mysqlClient->commit();
