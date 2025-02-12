@@ -9,9 +9,9 @@ require_once(__DIR__ . "/results.php");
 require_once(__DIR__ . "/variables.php");
 
 // Fonction générique pour traiter les votes pour chaque poste
-function processVotesForPresidence($mysqlClient, $poste, $poste2, $candidat1, $candidat2) {
+function processVotesForDelegue($mysqlClient, $poste, $poste2, $candidat1, $candidat2, $options) {
     $voix = [];
-    $vote= vote($mysqlClient, $poste2);
+    $vote= voteD($mysqlClient, $poste2, $options);
 
     // Recherche des voix des candidats spécifiés
     foreach ($poste as $candidat) {
@@ -42,34 +42,34 @@ function processVotesForPresidence($mysqlClient, $poste, $poste2, $candidat1, $c
         // Met à jour ou insère les voix en fonction de l'existence des données
         if ($vote == 3) {
             // Fonction pour mettre à jour la table vote_2
-            function updateVote2($mysqlClient, $vote, $nom, $poste) {
-                $updateStmt = $mysqlClient->prepare("UPDATE vote_2 SET voix = :voix WHERE nom = :nom AND :poste = :poste");
-                $updateStmt->execute(["voix" => $vote, "nom" => $nom, "poste" => $poste]) or die(print_r($mysqlClient->errorInfo()));
+            function updateVote2($mysqlClient, $vote, $nom, $poste, $options) {
+                $updateStmt = $mysqlClient->prepare("UPDATE vote_2 SET voix = :voix WHERE nom = :nom AND :poste = :poste AND options= :options");
+                $updateStmt->execute(["voix" => $vote, "nom" => $nom, "poste" => $poste, "options" => $options]) or die(print_r($mysqlClient->errorInfo()));
             }
 
             foreach ($poste as $candidat) {
                 if ($candidat['nom'] === $candidat1) {
-                    updateVote2($mysqlClient, $voix[$candidat1], $candidat1, $poste2);
+                    updateVote2($mysqlClient, $voix[$candidat1], $candidat1, $poste2, $options);
                 } elseif ($candidat['nom'] === $candidat2) {
-                    updateVote2($mysqlClient, $voix[$candidat2], $candidat2, $poste2);
+                    updateVote2($mysqlClient, $voix[$candidat2], $candidat2, $poste2, $options);
                 } else {
-                    updateVote2($mysqlClient, $candidat['voix'], $candidat['nom'], $poste2);
+                    updateVote2($mysqlClient, $candidat['voix'], $candidat['nom'], $poste2, $options);
                 }
             }
         } else {
             // Fonction pour insérer un nouveau vote dans la table vote_2
-            function insertVote2($mysqlClient, $vote, $nom, $poste) {
-                $insertStmt = $mysqlClient->prepare("INSERT INTO vote_2(nom, voix, poste) VALUES(:nom, :voix, :poste)");
-                $insertStmt->execute(["nom" => $nom, "voix" => $vote, "poste" => $poste]) or die(print_r($mysqlClient->errorInfo()));
+            function insertVote2($mysqlClient, $vote, $nom, $poste, $options) {
+                $insertStmt = $mysqlClient->prepare("INSERT INTO vote_2(nom, voix, poste, options) VALUES(:nom, :voix, :poste, :options)");
+                $insertStmt->execute(["nom" => $nom, "voix" => $vote, "poste" => $poste, "options" => $options]) or die(print_r($mysqlClient->errorInfo()));
             }
 
             foreach ($poste as $candidat) {
                 if ($candidat['nom'] === $candidat1) {
-                    insertVote2($mysqlClient, $voix[$candidat1], $candidat1, $poste2);
+                    insertVote2($mysqlClient, $voix[$candidat1], $candidat1, $poste2, $options);
                 } elseif ($candidat['nom'] === $candidat2) {
-                    insertVote2($mysqlClient, $voix[$candidat2], $candidat2, $poste2);
+                    insertVote2($mysqlClient, $voix[$candidat2], $candidat2, $poste2, $options);
                 } else {
-                    insertVote2($mysqlClient, $candidat['voix'], $candidat['nom'], $poste2);
+                    insertVote2($mysqlClient, $candidat['voix'], $candidat['nom'], $poste2, $options);
                 }
             }
         }
@@ -77,9 +77,9 @@ function processVotesForPresidence($mysqlClient, $poste, $poste2, $candidat1, $c
 }
 
 // Récupérer les résultats mis à jour
-function retrieveVote2($mysqlClient, $poste) {
-    $vote = $mysqlClient->prepare("SELECT * FROM vote_2 WHERE poste = :poste ORDER BY voix DESC");
-    $vote->execute(["poste" => $poste]);
+function retrieveVoteD2($mysqlClient, $poste, $options) {
+    $vote = $mysqlClient->prepare("SELECT * FROM vote_2 WHERE poste = :poste AND options = :options ORDER BY voix DESC");
+    $vote->execute(["poste" => $poste, "options" => $options]);
     $vote = $vote->fetchAll();
     return $vote;
 }

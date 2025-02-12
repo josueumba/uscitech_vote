@@ -9,6 +9,6 @@ require_once(__DIR__ ."/../results.php");
 $candidat1 = '';
 $candidat2 = '';
 
-processVotesForPost($mysqlClient, $vice_presidence, 'VICE PRESIDENT', $candidat1, $candidat2);
+processVotesForPresidence($mysqlClient, $vice_presidence, 'VICE PRESIDENT', $candidat1, $candidat2);
 
-$vice_presidences_ = retrieveVote2('VICE PRESIDENT');
+$vice_presidences = retrieveVote2($mysqlClient, 'VICE PRESIDENT');

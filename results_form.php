@@ -110,7 +110,7 @@ if($_SESSION["logged_student"]["promotion"] == 'BAC1' ||
 
         <div>
             <h2>cp bac1 économie</h2>
-            <?php foreach($cp_bac1_economie as $cp): ?>
+            <?php foreach($cp_bac1_economies as $cp): ?>
                 <p><?php echo $cp["nom"]; ?> : <?php echo $cp["voix"]; ?></p>
             <?php endforeach; ?>
         </div>
