@@ -4,10 +4,12 @@ $studentsStatement= $mysqlClient-> prepare('SELECT * FROM etudiant');
 $studentsStatement->execute();
 $students= $studentsStatement->fetchAll();
 
-
-$vote= $mysqlClient-> prepare("SELECT COUNT(*) FROM vote_2");
-$vote-> execute();
-$vote= $vote-> fetchColumn();
+function vote($poste) {
+    $vote= $mysqlClient-> prepare("SELECT COUNT(*) FROM vote_2 WHERE poste= :poste");
+    $vote-> execute(['poste' => $poste]);
+    $vote= $vote-> fetchColumn();
+    return $vote;
+}
 
 
 

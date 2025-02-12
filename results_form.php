@@ -3,6 +3,9 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+foreach(glob(__DIR__ . "/candidats/*.php") as $file) {
+    require_once $file;
+}
 require_once(__DIR__ ."/results.php");
 require_once(__DIR__ ."/treat_candidat.php");
 require_once(__DIR__ ."/fonctions.php");
