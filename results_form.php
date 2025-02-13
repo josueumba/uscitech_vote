@@ -7,7 +7,7 @@ foreach(glob(__DIR__ . "/candidats/*.php") as $file) {
     require_once $file;
 }
 require_once(__DIR__ ."/results.php");
-require_once(__DIR__ ."/treat_candidat.php");
+//require_once(__DIR__ ."/treat_candidat.php");
 require_once(__DIR__ ."/fonctions.php");
 
 if(!isset($_SESSION["logged_student"])) {
@@ -40,21 +40,21 @@ if($_SESSION["logged_student"]["promotion"] == 'BAC1' ||
 
         <div>
             <h2>président</h2>
-            <?php foreach($presidence as $president): ?>
+            <?php foreach($presidences as $president): ?>
                 <p><?php echo $president["nom"]; ?> : <?php echo $president["voix"]; ?></p>
             <?php endforeach; ?>
         </div>
 
         <div>
             <h2>vice président</h2>
-            <?php foreach($vice_presidence as $vice_president): ?>
+            <?php foreach($vice_presidences as $vice_president): ?>
                 <p><?php echo $vice_president["nom"]; ?> : <?php echo $vice_president["voix"]; ?></p>
             <?php endforeach; ?>
         </div>
 
         <div>
             <h2>delegue économie</h2>
-            <?php foreach($delegue_economie as $delegue): ?>
+            <?php foreach($delegue_economies as $delegue): ?>
                 <p><?php echo $delegue["nom"]; ?> : <?php echo $delegue["voix"]; ?></p>
             <?php endforeach; ?>
         </div>
@@ -96,7 +96,7 @@ if($_SESSION["logged_student"]["promotion"] == 'BAC1' ||
 
         <div>
             <h2>delegue sciences informatiques</h2>
-            <?php foreach($delegue_informatique as $delegue): ?>
+            <?php foreach($delegue_informatiques as $delegue): ?>
                 <p><?php echo $delegue["nom"]; ?> : <?php echo $delegue["voix"]; ?></p>
             <?php endforeach; ?>
         </div>

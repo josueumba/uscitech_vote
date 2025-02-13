@@ -42,34 +42,34 @@ function processVotesForDelegue($mysqlClient, $poste, $poste2, $candidat1, $cand
         // Met à jour ou insère les voix en fonction de l'existence des données
         if ($vote == 3) {
             // Fonction pour mettre à jour la table vote_2
-            function updateVote2($mysqlClient, $vote, $nom, $poste, $options) {
+            function updateVoteD2($mysqlClient, $vote, $nom, $poste, $options) {
                 $updateStmt = $mysqlClient->prepare("UPDATE vote_2 SET voix = :voix WHERE nom = :nom AND :poste = :poste AND options= :options");
                 $updateStmt->execute(["voix" => $vote, "nom" => $nom, "poste" => $poste, "options" => $options]) or die(print_r($mysqlClient->errorInfo()));
             }
 
             foreach ($poste as $candidat) {
                 if ($candidat['nom'] === $candidat1) {
-                    updateVote2($mysqlClient, $voix[$candidat1], $candidat1, $poste2, $options);
+                    updateVoteD2($mysqlClient, $voix[$candidat1], $candidat1, $poste2, $options);
                 } elseif ($candidat['nom'] === $candidat2) {
-                    updateVote2($mysqlClient, $voix[$candidat2], $candidat2, $poste2, $options);
+                    updateVoteD2($mysqlClient, $voix[$candidat2], $candidat2, $poste2, $options);
                 } else {
-                    updateVote2($mysqlClient, $candidat['voix'], $candidat['nom'], $poste2, $options);
+                    updateVoteD2($mysqlClient, $candidat['voix'], $candidat['nom'], $poste2, $options);
                 }
             }
         } else {
             // Fonction pour insérer un nouveau vote dans la table vote_2
-            function insertVote2($mysqlClient, $vote, $nom, $poste, $options) {
+            function insertVoteD2($mysqlClient, $vote, $nom, $poste, $options) {
                 $insertStmt = $mysqlClient->prepare("INSERT INTO vote_2(nom, voix, poste, options) VALUES(:nom, :voix, :poste, :options)");
                 $insertStmt->execute(["nom" => $nom, "voix" => $vote, "poste" => $poste, "options" => $options]) or die(print_r($mysqlClient->errorInfo()));
             }
 
             foreach ($poste as $candidat) {
                 if ($candidat['nom'] === $candidat1) {
-                    insertVote2($mysqlClient, $voix[$candidat1], $candidat1, $poste2, $options);
+                    insertVoteD2($mysqlClient, $voix[$candidat1], $candidat1, $poste2, $options);
                 } elseif ($candidat['nom'] === $candidat2) {
-                    insertVote2($mysqlClient, $voix[$candidat2], $candidat2, $poste2, $options);
+                    insertVoteD2($mysqlClient, $voix[$candidat2], $candidat2, $poste2, $options);
                 } else {
-                    insertVote2($mysqlClient, $candidat['voix'], $candidat['nom'], $poste2, $options);
+                    insertVoteD2($mysqlClient, $candidat['voix'], $candidat['nom'], $poste2, $options);
                 }
             }
         }
