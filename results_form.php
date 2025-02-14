@@ -110,7 +110,7 @@ if($_SESSION["logged_student"]["promotion"] == 'BAC1' ||
 
         <div>
             <h2>cp bac1 économie</h2>
-            <?php foreach($cp_bac1_economies as $cp): ?>
+            <?php foreach($cp_bac1_economie as $cp): ?>
                 <p><?php echo $cp["nom"]; ?> : <?php echo $cp["voix"]; ?></p>
             <?php endforeach; ?>
         </div>
@@ -207,20 +207,20 @@ if($_SESSION["logged_student"]["promotion"] == 'BAC1' ||
         </div>
 
         <div>
-            <h2>cp bac3 génie logiciel</h2>
-            <?php foreach($cp_bac3_genielogiciel as $cp): ?>
+            <h2>cp bac3 sciences informatiques</h2>
+            <?php foreach($cp_bac3_informatique as $cp): ?>
                 <p><?php echo $cp["nom"]; ?> : <?php echo $cp["voix"]; ?></p>
             <?php endforeach; ?>
         </div>
 
         <div>
-            <h2>cpa bac3 génie logiciel</h2>
-            <?php foreach($cpa_bac3_genielogiciel as $cpa): ?>
+            <h2>cpa bac3 sciences informatiques</h2>
+            <?php foreach($cpa_bac3_informatique as $cpa): ?>
                 <p><?php echo $cpa["nom"]; ?> : <?php echo $cpa["voix"]; ?></p>
             <?php endforeach; ?>
         </div>
 
-        <div>
+        <!-- <div>
             <h2>cp bac3 réseau et télécommunication</h2>
             <?php foreach($cp_bac3_reseau as $cp): ?>
                 <p><?php echo $cp["nom"]; ?> : <?php echo $cp["voix"]; ?></p>
@@ -232,7 +232,7 @@ if($_SESSION["logged_student"]["promotion"] == 'BAC1' ||
             <?php foreach($cpa_bac3_reseau as $cpa): ?>
                 <p><?php echo $cpa["nom"]; ?> : <?php echo $cpa["voix"]; ?></p>
             <?php endforeach; ?>
-        </div>
+        </div> -->
 
     </section>
 

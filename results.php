@@ -42,11 +42,11 @@ $cpa_bac2_informatique= getCpsVote($mysqlClient, 'cpa', 'bac2', 'sciences inform
 
 
 //Récupération des votes des cp et cpa bac3
-$cp_bac3_genielogiciel= getCpsVote($mysqlClient, 'cp', 'bac3', 'genie logiciel');
-$cp_bac3_reseau= getCpsVote($mysqlClient, 'cp', 'bac3', 'reseau telecommunication');
+$cp_bac3_informatique= getCpsVote($mysqlClient, 'cp', 'bac3', 'sciences informatiques');
+//$cp_bac3_reseau= getCpsVote($mysqlClient, 'cp', 'bac3', 'reseau telecommunication');
 $cp_bac3_genieelectrique= getCpsVote($mysqlClient, 'cp', 'bac3', 'genie electrique');
 
-$cpa_bac3_genielogiciel= getCpsVote($mysqlClient, 'cpa', 'bac3', 'genie logiciel');
-$cpa_bac3_reseau= getCpsVote($mysqlClient, 'cpa', 'bac3', 'reseau telecommunication');
+$cpa_bac3_informatique= getCpsVote($mysqlClient, 'cpa', 'bac3', 'sciences informatiques');
+//$cpa_bac3_reseau= getCpsVote($mysqlClient, 'cpa', 'bac3', 'reseau telecommunication');
 $cpa_bac3_genieelectrique= getCpsVote($mysqlClient, 'cpa', 'bac3', 'genie electrique');
 

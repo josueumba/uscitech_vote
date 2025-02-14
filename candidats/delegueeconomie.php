@@ -1,27 +1,27 @@
 <?php
- if (session_status() == PHP_SESSION_NONE) {
-     session_start();
- }
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
- require_once(__DIR__ . "/../dbconnection.php");
+require_once(__DIR__ . "/../dbconnection.php");
 require_once(__DIR__ . "/../results.php");
- require_once(__DIR__ ."/../variables.php");
+require_once(__DIR__ ."/../variables.php");
 
- $candidat1 = 'MUBIBYA CLEMY';
- $candidat2 = 'KAMUANYA CORNELLY';
+$candidat1 = 'MUBIBYA CLEMY';
+$candidat2 = 'KAMUANYA CORNELLY';
 
- $voix = [];
- $poste= 'DELEGUE';
- $options= 'ECONOMIE';
- $vote= voteD($mysqlClient, $poste, $options);
+$voix = [];
+$poste= 'DELEGUE';
+$options= 'ECONOMIE';
+$vote= voteD($mysqlClient, $poste, $options);
 
- foreach($delegue_economie as $candidat) {
-     if ($candidat['nom'] === $candidat1) {
-         $voix[$candidat1] = $candidat['voix'];
-     } elseif ($candidat['nom'] === $candidat2) {
-         $voix[$candidat2] = $candidat['voix'];
-     }
- }
+foreach($delegue_economie as $candidat) {
+    if (strtoupper($candidat['nom']) === $candidat1) {
+        $voix[$candidat1] = $candidat['voix'];
+    } elseif (strtoupper($candidat['nom']) === $candidat2) {
+        $voix[$candidat2] = $candidat['voix'];
+    }
+}
 
  if (count($voix) == 2) {
      $voix1 = $voix[$candidat1];
@@ -33,7 +33,7 @@ require_once(__DIR__ . "/../results.php");
          $voix[$candidat2] = $temp;
      }
 
-     if ($voix1 == $voix2 && ($voix1 && $voix2 !== 0)) {
+     if ($voix1 == $voix2 && $voix1 !== 0) {
          $voix[$candidat1]++;
          $voix[$candidat2]--;
      }
@@ -46,9 +46,9 @@ require_once(__DIR__ . "/../results.php");
          }
         
          foreach ($delegue_economie as $candidat) {
-             if ($candidat['nom'] === $candidat1) {
+             if (strtoupper($candidat['nom']) === $candidat1) {
                 updateVoteDE2($mysqlClient, $voix[$candidat1], $candidat1, $poste, $options);
-             } elseif ($candidat['nom'] === $candidat2) {
+             } elseif (strtoupper($candidat['nom']) === $candidat2) {
                 updateVoteDE2($mysqlClient, $voix[$candidat2], $candidat2, $poste, $options);
              } else {
                 updateVoteDE2($mysqlClient, $candidat['voix'], $candidat['nom'], $poste, $options);
@@ -62,9 +62,9 @@ require_once(__DIR__ . "/../results.php");
          }
 
          foreach ($delegue_economie as $candidat) {
-             if ($candidat['nom'] === $candidat1) {
+             if (strtoupper($candidat['nom']) === $candidat1) {
                 insertVoteDE2($mysqlClient, $voix[$candidat1], $candidat1, $poste, $options);
-             } elseif ($candidat['nom'] === $candidat2) {
+             } elseif (strtoupper($candidat['nom']) === $candidat2) {
                 insertVoteDE2($mysqlClient, $voix[$candidat2], $candidat2, $poste, $options);
              } else {
                 insertVoteDE2($mysqlClient, $candidat['voix'], $candidat['nom'], $poste, $options);

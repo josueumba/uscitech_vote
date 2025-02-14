@@ -15,9 +15,9 @@ require_once(__DIR__ . "/../results.php");
  $vote= vote($mysqlClient, $poste);
 
  foreach($presidence as $candidat) {
-     if ($candidat['nom'] === $candidat1) {
+     if (strtoupper($candidat['nom']) === $candidat1) {
          $voix[$candidat1] = $candidat['voix'];
-     } elseif ($candidat['nom'] === $candidat2) {
+     } elseif (strtoupper($candidat['nom']) === $candidat2) {
          $voix[$candidat2] = $candidat['voix'];
      }
  }
@@ -32,7 +32,7 @@ require_once(__DIR__ . "/../results.php");
          $voix[$candidat2] = $temp;
      }
 
-     if ($voix1 == $voix2 && ($voix1 && $voix2 !== 0)) {
+     if ($voix1 == $voix2 && $voix1 !== 0) {
          $voix[$candidat1]++;
          $voix[$candidat2]--;
      }
@@ -45,9 +45,9 @@ require_once(__DIR__ . "/../results.php");
          }
         
          foreach ($presidence as $candidat) {
-             if ($candidat['nom'] === $candidat1) {
+             if (strtoupper($candidat['nom']) === $candidat1) {
                  updateVote2($mysqlClient, $voix[$candidat1], $candidat1, $poste);
-             } elseif ($candidat['nom'] === $candidat2) {
+             } elseif (strtoupper($candidat['nom']) === $candidat2) {
                  updateVote2($mysqlClient, $voix[$candidat2], $candidat2, $poste);
              } else {
                  updateVote2($mysqlClient, $candidat['voix'], $candidat['nom'], $poste);
@@ -61,9 +61,9 @@ require_once(__DIR__ . "/../results.php");
          }
 
          foreach ($presidence as $candidat) {
-             if ($candidat['nom'] === $candidat1) {
+             if (strtoupper($candidat['nom']) === $candidat1) {
                  insertVote2($mysqlClient, $voix[$candidat1], $candidat1, $poste);
-             } elseif ($candidat['nom'] === $candidat2) {
+             } elseif (strtoupper($candidat['nom']) === $candidat2) {
                  insertVote2($mysqlClient, $voix[$candidat2], $candidat2, $poste);
              } else {
                  insertVote2($mysqlClient, $candidat['voix'], $candidat['nom'], $poste);

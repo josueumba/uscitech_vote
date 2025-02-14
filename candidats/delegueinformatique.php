@@ -16,9 +16,9 @@ require_once(__DIR__ . "/../results.php");
  $vote= voteD($mysqlClient, $poste, $options);
 
  foreach($delegue_informatique as $candidat) {
-     if ($candidat['nom'] === $candidat1) {
+     if (strtoupper($candidat['nom']) === $candidat1) {
          $voix[$candidat1] = $candidat['voix'];
-     } elseif ($candidat['nom'] === $candidat2) {
+     } elseif (strtoupper($candidat['nom']) === $candidat2) {
          $voix[$candidat2] = $candidat['voix'];
      }
  }
@@ -33,10 +33,10 @@ require_once(__DIR__ . "/../results.php");
          $voix[$candidat2] = $temp;
      }
 
-     if ($voix1 == $voix2) {
-         $voix[$candidat1]++;
-         $voix[$candidat2]--;
-     }
+    //  if ($voix1 == $voix2) {
+    //      $voix[$candidat1]++;
+    //      $voix[$candidat2]--;
+    //  }
 
      if($vote == 3) {
          //fonctionn pour mettre à jour la table vote2 au cas où elle contient déjà les données
@@ -46,9 +46,9 @@ require_once(__DIR__ . "/../results.php");
          }
         
          foreach ($delegue_informatique as $candidat) {
-             if ($candidat['nom'] === $candidat1) {
+             if (strtoupper($candidat['nom']) === $candidat1) {
                 updateVoteDI2($mysqlClient, $voix[$candidat1], $candidat1, $poste, $options);
-             } elseif ($candidat['nom'] === $candidat2) {
+             } elseif (strtoupper($candidat['nom']) === $candidat2) {
                 updateVoteDI2($mysqlClient, $voix[$candidat2], $candidat2, $poste, $options);
              } else {
                 updateVoteDI2($mysqlClient, $candidat['voix'], $candidat['nom'], $poste, $options);
@@ -62,9 +62,9 @@ require_once(__DIR__ . "/../results.php");
          }
 
          foreach ($delegue_informatique as $candidat) {
-             if ($candidat['nom'] === $candidat1) {
+             if (strtoupper($candidat['nom']) === $candidat1) {
                 insertVoteDI2($mysqlClient, $voix[$candidat1], $candidat1, $poste, $options);
-             } elseif ($candidat['nom'] === $candidat2) {
+             } elseif (strtoupper($candidat['nom']) === $candidat2) {
                 insertVoteDI2($mysqlClient, $voix[$candidat2], $candidat2, $poste, $options);
              } else {
                 insertVoteDI2($mysqlClient, $candidat['voix'], $candidat['nom'], $poste, $options);
