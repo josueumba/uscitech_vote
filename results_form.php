@@ -3,6 +3,10 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 foreach(glob(__DIR__ . "/candidats/*.php") as $file) {
     require_once $file;
 }
@@ -40,7 +44,7 @@ if($_SESSION["logged_student"]["promotion"] == 'BAC1' ||
 
         <div>
             <h2>président</h2>
-            <?php foreach($presidences as $president): ?>
+            <?php foreach($presidence as $president): ?>
                 <p><?php echo $president["nom"]; ?> : <?php echo $president["voix"]; ?></p>
             <?php endforeach; ?>
         </div>
@@ -96,7 +100,7 @@ if($_SESSION["logged_student"]["promotion"] == 'BAC1' ||
 
         <div>
             <h2>delegue sciences informatiques</h2>
-            <?php foreach($delegue_informatiques as $delegue): ?>
+            <?php foreach($delegue_informatique as $delegue): ?>
                 <p><?php echo $delegue["nom"]; ?> : <?php echo $delegue["voix"]; ?></p>
             <?php endforeach; ?>
         </div>
@@ -110,7 +114,7 @@ if($_SESSION["logged_student"]["promotion"] == 'BAC1' ||
 
         <div>
             <h2>cp bac1 économie</h2>
-            <?php foreach($cp_bac1_economie as $cp): ?>
+            <?php foreach($cp_bac1_economies as $cp): ?>
                 <p><?php echo $cp["nom"]; ?> : <?php echo $cp["voix"]; ?></p>
             <?php endforeach; ?>
         </div>

@@ -19,8 +19,8 @@ function voteD($mysqlClient, $poste, $options) {
     return $vote;
 }
 
-function voteCp($mysqlClient, $poste, $options, $promotion) {
-    $vote= $mysqlClient-> prepare("SELECT COUNT(*) FROM vote_2 WHERE poste= :poste AND options= :options AND promotion= :promotion");
+function voteCp($mysqlClient, $poste, $promotion, $options) {
+    $vote= $mysqlClient-> prepare("SELECT COUNT(*) FROM vote_2 WHERE poste= :poste AND promotion= :promotion AND options= :options");
     $vote-> execute(['poste' => $poste, 'options' => $options, "promotion" => $promotion]);
     $vote= $vote-> fetchColumn();
     return $vote;

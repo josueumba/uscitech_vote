@@ -38,7 +38,7 @@ if(isset($_SESSION["logged_student"])) {
                 <div class="login-form">
                     <div>
                         <label for="identifiant">Identifiant</label>
-                        <input type="email" name="email" id="" placeholder="exemple@gmail.com" required>
+                        <input type="email" name="email" id="" placeholder="prenom.nom@uscitech.ac.cd" required>
                     </div>
 
                     <div>

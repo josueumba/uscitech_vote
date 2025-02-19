@@ -8,7 +8,7 @@ require_once(__DIR__ . "/../results.php");
  require_once(__DIR__ ."/../variables.php");
 
  $candidat1 = 'MAFUTA QUEEN';
- $candidat2 = 'KINZO JAPHET';
+ $candidat2 = 'KINZO EMMANUEL';
 
  $voix = [];
  $poste= 'VICE PRESIDENT';
